@@ -10,6 +10,8 @@ Dónde leer **antes de editar**. El agente no debe reescribir skills a ciegas.
 |------|-----------|-------------|
 | `README.md` | Entrada GitHub: install, valor, estructura | Onboarding repo |
 | `docs/OVERVIEW.md` | Visión, flujos, glosario | Contexto del proyecto |
+| `docs/CAPABILITIES.md` | Mobile, datos, límites v3.4 | Decidir alcance sin v4 |
+| `docs/roadmap-v4-languages.md` | Factibilidad v4 multi-lenguaje | Planificación releases |
 | `MANIFIESTO.md` | Alcance, lista de skills, artefactos harness | Cualquier cambio en la suite |
 | `install-local.sh` | Instalación global/proyecto; `--bootstrap` en clientes | Cambios de distribución |
 | `scripts/harness-test.sh` | Gate FB-2 local + CI | Antes de PR |
