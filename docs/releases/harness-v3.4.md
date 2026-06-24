@@ -39,11 +39,13 @@ bash scripts/tag-harness-release.sh v3.4
 ```bash
 cd suite-dev-studio
 bash scripts/tag-harness-release.sh v3.4
-git tag -a harness-v3.4 -m "Harness suite v3.4 — Modo 7, disciplina karpathy, variantes ciegas"
+git tag -a harness-v3.4 -m "Harness suite v3.4 — disciplina 5/5, Modo 7"
+git push origin master
 git push origin harness-v3.4
 ```
+
+**Remoto:** https://github.com/CesarParrales/SuiteDevStudio.git — tag publicado 2026-06-24.
 
 ## Próximo trimestre
 
 - Mantenimiento Modo 7; re-verificar escenarios si skills de disciplina cambian
-- Tag `harness-v3.4` manual cuando maintainer autorice
