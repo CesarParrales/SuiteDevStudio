@@ -4,6 +4,15 @@ Append-only. Una entrada mínima por oleada o versión harness.
 
 ---
 
+### 2026-06-24 · harness-v3.4 (tag aplicado) · oleada 19+
+
+- **Escenario:** VC-RED-01 (cierre disciplina 5/5)
+- **Tag:** `harness-v3.4` creado localmente (commit inicial repo)
+- **Gates:** `tag-harness-release.sh v3.4` → exit 0
+- **Nota:** push pendiente si se configura `origin`
+
+---
+
 ### 2026-06-24 · v3.4 oleada 19 — disciplina completa
 
 - **Escenario:** VC-RED-01 (vibe-coding-token-optimization)

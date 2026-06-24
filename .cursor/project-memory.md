@@ -26,7 +26,7 @@ Comandos antes de cerrar cambios en `skills/` o CI:
 bash scripts/harness-test.sh
 ```
 
-Última verificación registrada: 2026-06-24 · `harness-test.sh` oleada 19 → exit 0
+Última verificación registrada: 2026-06-24 · `git tag harness-v3.4` aplicado (commit `1fcef82`)
 
 ## Harness del proyecto
 
@@ -37,6 +37,11 @@ bash scripts/harness-test.sh
 | Workflow cliente | `templates/github/harness-validate-project.yml` |
 
 ## Log de sesión (IN-3)
+
+### 2026-06-24 · Tag harness-v3.4 aplicado
+- Repo git inicializado en suite-dev-studio (TOSHIBA)
+- Tag: `harness-v3.4` → commit baseline oleadas 1–19
+- Push: pendiente (`origin` no configurado)
 
 ### 2026-06-24 · Oleada 19 — vibe-coding RED/GREEN (disciplina 5/5)
 - Skills activas: vibe-coding-token-optimization, testing-skills-with-subagents

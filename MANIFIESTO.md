@@ -70,7 +70,7 @@ Total: 38 skills (33 de dominio + 4 meta/proceso + 1 integración opt-in)
   skill-evolution Modo 7        → Cierre trimestral (quarterly-harness.md)
   docs/harness-quarterly-2026-06.md → Informe Modo 7 trimestral
   vibe-coding VC-RED-01/02 → Gate 5/5 skills disciplina completado
-  Madurez harness estimada: ~100% (disciplina suite cerrada oleada 19)
+  Madurez harness estimada: ~100% (tag harness-v3.4 aplicado localmente)
   templates/AGENTS.md      → Mapa ~100 líneas para repos (--init-agents)
   testing-skills-with-subagents → RED/GREEN de skills de disciplina (subagentes)
   HARNESS-FAILURES.md      → Catálogo global de fallos del agente (raíz skills/)
