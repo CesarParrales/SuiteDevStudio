@@ -9,7 +9,7 @@ Append-only. Una entrada mínima por oleada o versión harness.
 - **Escenario:** VC-RED-01 (cierre disciplina 5/5)
 - **Tag:** `harness-v3.4` creado localmente (commit inicial repo)
 - **Gates:** `tag-harness-release.sh v3.4` → exit 0
-- **Nota:** push pendiente si se configura `origin`
+- **Nota:** push a `origin/master` + tag `harness-v3.4` en GitHub (2026-06-24)
 
 ---
 

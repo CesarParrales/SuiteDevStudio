@@ -41,7 +41,7 @@ bash scripts/harness-test.sh
 ### 2026-06-24 · Tag harness-v3.4 aplicado
 - Repo git inicializado en suite-dev-studio (TOSHIBA)
 - Tag: `harness-v3.4` → commit baseline oleadas 1–19
-- Push: pendiente (`origin` no configurado)
+- Push: `origin` → https://github.com/CesarParrales/SuiteDevStudio.git (2026-06-24)
 
 ### 2026-06-24 · Oleada 19 — vibe-coding RED/GREEN (disciplina 5/5)
 - Skills activas: vibe-coding-token-optimization, testing-skills-with-subagents
