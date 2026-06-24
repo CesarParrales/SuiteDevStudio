@@ -8,6 +8,8 @@ Dónde leer **antes de editar**. El agente no debe reescribir skills a ciegas.
 
 | Ruta | Contenido | Cuándo leer |
 |------|-----------|-------------|
+| `README.md` | Entrada GitHub: install, valor, estructura | Onboarding repo |
+| `docs/OVERVIEW.md` | Visión, flujos, glosario | Contexto del proyecto |
 | `MANIFIESTO.md` | Alcance, lista de skills, artefactos harness | Cualquier cambio en la suite |
 | `install-local.sh` | Instalación global/proyecto; `--bootstrap` en clientes | Cambios de distribución |
 | `scripts/harness-test.sh` | Gate FB-2 local + CI | Antes de PR |

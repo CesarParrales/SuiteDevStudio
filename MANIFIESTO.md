@@ -1,4 +1,7 @@
 # Suite Dev Studio — Skills de Desarrollo
+
+> Entrada del repo: [README.md](README.md) · Visión: [docs/OVERVIEW.md](docs/OVERVIEW.md)
+
 Generado: 2026-05-31 · Optimizado: 2026-06-11 (v2) · Memoria: 2026-06-11 (v2.1) · Recursos UX: 2026-06-12 · Harness: 2026-06-24 (v3.4)
 Total: 38 skills (33 de dominio + 4 meta/proceso + 1 integración opt-in)
 
