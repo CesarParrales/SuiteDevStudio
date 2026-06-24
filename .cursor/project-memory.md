@@ -26,7 +26,7 @@ Comandos antes de cerrar cambios en `skills/` o CI:
 bash scripts/harness-test.sh
 ```
 
-Última verificación registrada: 2026-06-24 · `git tag harness-v3.4` → `c874cab`
+Última verificación registrada: 2026-06-24 · tag `harness-v3.4` aplicado localmente
 
 ## Harness del proyecto
 
