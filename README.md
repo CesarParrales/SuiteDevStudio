@@ -191,6 +191,8 @@ Ver [`docs/harness-ci.md`](docs/harness-ci.md).
 |-----------|-----------|
 | [MANIFIESTO.md](MANIFIESTO.md) | Catálogo, memoria L0–L3, política de stack |
 | [docs/OVERVIEW.md](docs/OVERVIEW.md) | Visión, flujos y glosario |
+| [docs/CAPABILITIES.md](docs/CAPABILITIES.md) | Mobile escala media, datos/Python, límites v3.4 |
+| [docs/roadmap-v4-languages.md](docs/roadmap-v4-languages.md) | Factibilidad expansión multi-lenguaje (v4) |
 | [docs/suite-code-map.md](docs/suite-code-map.md) | Dónde editar qué en este repo |
 | [docs/harness-release.md](docs/harness-release.md) | Cierre de oleadas (Modo 6) |
 | [docs/harness-quarterly-2026-06.md](docs/harness-quarterly-2026-06.md) | Informe Modo 7 trimestral |
