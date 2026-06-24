@@ -1,0 +1,109 @@
+# Harness validation — proyecto cliente
+#
+# Copiar a: .github/workflows/harness-validate.yml
+# O instalar con:
+#   /path/to/suite-dev-studio/install-local.sh --project . --init-github
+#
+# Opcional: feedback/ci-failures.txt en formato FB-3 cuando un bot reformatee fallos de CI.
+
+name: Harness (project)
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  harness-skills:
+    name: Skills instaladas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Comprobar skills mínimas
+        run: |
+          test -d .cursor/skills/comprobacion-produccion
+          test -f .cursor/skills/comprobacion-produccion/scripts/validate-fb3.sh
+          test -d .cursor/skills/karpathy-guidelines
+          echo "Harness skills OK"
+
+  validate-fb3:
+    name: FB-3 feedback
+    runs-on: ubuntu-latest
+    if: hashFiles('feedback/ci-failures.txt') != ''
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validar formato FB-3
+        run: |
+          chmod +x .cursor/skills/comprobacion-produccion/scripts/validate-fb3.sh
+          .cursor/skills/comprobacion-produccion/scripts/validate-fb3.sh --strict feedback/ci-failures.txt
+
+  release-red:
+    name: Release RED log
+    runs-on: ubuntu-latest
+    if: hashFiles('docs/harness-release-log.md') != ''
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validar release log
+        run: |
+          chmod +x .cursor/skills/testing-skills-with-subagents/scripts/validate-release-red.sh
+          .cursor/skills/testing-skills-with-subagents/scripts/validate-release-red.sh
+
+  harness-test:
+    name: Harness gate (proyecto)
+    runs-on: ubuntu-latest
+    if: hashFiles('scripts/harness-test.sh') != ''
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ejecutar scripts/harness-test.sh
+        run: bash scripts/harness-test.sh
+
+  test-php:
+    name: Tests PHP
+    runs-on: ubuntu-latest
+    if: hashFiles('composer.json') != ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+      - name: Run tests
+        run: |
+          if [ -f vendor/bin/pest ]; then vendor/bin/pest; elif [ -f artisan ]; then php artisan test; else vendor/bin/phpunit; fi
+
+  harness-readiness:
+    name: Readiness /20 (≥16)
+    runs-on: ubuntu-latest
+    if: hashFiles('.cursor/project-memory.md') != ''
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Score harness readiness
+        run: |
+          chmod +x .cursor/skills/harness-template/scripts/harness-readiness.sh
+          .cursor/skills/harness-template/scripts/harness-readiness.sh \
+            --suite .cursor/skills --project . --ci
+
+  test-node:
+    name: Tests Node
+    runs-on: ubuntu-latest
+    if: hashFiles('package.json') != ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Lint
+        run: npm run lint --if-present
+      - name: Test
+        run: npm test --if-present
+      - name: Build
+        run: npm run build --if-present

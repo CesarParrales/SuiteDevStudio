@@ -1,0 +1,5 @@
+Categoría: test
+Ubicación: tests/Feature/OrderTest.php:42
+Esperado: POST /api/orders con quantity=0 devuelve 422
+Actual: devuelve 201 y persiste la orden
+Acción sugerida: añadir regla min:1 en StoreOrderRequest y assertUnprocessable en el test

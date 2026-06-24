@@ -1,0 +1,132 @@
+name: Harness validation
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'skills/**'
+      - 'templates/**'
+      - 'scripts/**'
+      - '.cursor/**'
+      - 'docs/harness-*.md'
+      - 'docs/harness-meta-checklist.md'
+      - '.github/workflows/harness-validate.yml'
+  pull_request:
+    paths:
+      - 'skills/**'
+      - 'templates/**'
+      - 'scripts/**'
+      - '.cursor/**'
+      - 'docs/harness-*.md'
+      - 'docs/harness-meta-checklist.md'
+      - '.github/workflows/harness-validate.yml'
+
+jobs:
+  validate-fb3:
+    name: FB-3 format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validar fixture FB-3
+        run: |
+          chmod +x skills/comprobacion-produccion/scripts/validate-fb3.sh
+          skills/comprobacion-produccion/scripts/validate-fb3.sh --strict \
+            skills/comprobacion-produccion/scripts/fixtures/fb3-valid.txt
+
+  skill-integrity:
+    name: Skill integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: SKILL.md bajo 500 líneas
+        run: |
+          over=$(wc -l skills/*/SKILL.md | awk '$2 ~ /SKILL\.md$/ && $1 > 500 {print $2, $1}')
+          if [ -n "$over" ]; then
+            echo "SKILL.md excede 500 líneas:"
+            echo "$over"
+            exit 1
+          fi
+
+      - name: Referencias rotas (enlaces markdown locales)
+        run: |
+          failed=0
+          for d in skills/*/; do
+            [ "$(basename "$d")" = "skill-evolution" ] && continue
+            while IFS= read -r ref; do
+              [ -z "$ref" ] && continue
+              [ -f "$d$ref" ] || { echo "ROTO: $d → $ref"; failed=1; }
+            done < <(grep -oE '\((references/[a-zA-Z0-9_-]+\.md)\)' "$d/SKILL.md" 2>/dev/null | tr -d '()' | sort -u)
+            while IFS= read -r ref; do
+              [ -z "$ref" ] && continue
+              [ -f "$d$ref" ] || { echo "ROTO: $d → $ref"; failed=1; }
+            done < <(grep -oE '\((templates/[a-zA-Z0-9_-]+\.md)\)' "$d/SKILL.md" 2>/dev/null | tr -d '()' | sort -u)
+          done
+          exit $failed
+
+      - name: Frontmatter portable (solo name + description)
+        run: |
+          if grep -lE '^(auto_reference|complementa:|contexto_critico:|version:|based_on:)' skills/*/SKILL.md 2>/dev/null | grep -v skill-evolution; then
+            echo "Frontmatter no portable detectado"
+            exit 1
+          fi
+
+  harness-templates:
+    name: Harness templates present
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Plantillas requeridas
+        run: |
+          for t in laravel-api-module nextjs-saas-page flutter-feature node-api-nest laravel-filament-resource react-native-screen inertia-spa-page; do
+            f="skills/harness-template/templates/${t}.md"
+            [ -f "$f" ] || { echo "Falta $f"; exit 1; }
+          done
+          [ -f templates/AGENTS.md ] || { echo "Falta templates/AGENTS.md"; exit 1; }
+          [ -f skills/HARNESS-FAILURES.md ] || { echo "Falta HARNESS-FAILURES.md"; exit 1; }
+
+  red-scenarios:
+    name: RED scenarios structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validar scenarios-discipline.md
+        run: |
+          chmod +x skills/testing-skills-with-subagents/scripts/validate-red-scenarios.sh
+          skills/testing-skills-with-subagents/scripts/validate-red-scenarios.sh
+
+  release-red:
+    name: Release RED log (≤90d)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validar harness-release-log.md
+        run: |
+          chmod +x skills/testing-skills-with-subagents/scripts/validate-release-red.sh
+          skills/testing-skills-with-subagents/scripts/validate-release-red.sh
+
+  meta-harness:
+    name: Meta-harness (~98%)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validar artefactos meta
+        run: |
+          chmod +x skills/harness-template/scripts/validate-meta-harness.sh
+          skills/harness-template/scripts/validate-meta-harness.sh
+
+  harness-readiness:
+    name: Readiness /20 (≥16)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Score harness readiness
+        run: |
+          chmod +x skills/harness-template/scripts/harness-readiness.sh
+          skills/harness-template/scripts/harness-readiness.sh --suite ./skills --project . --ci
