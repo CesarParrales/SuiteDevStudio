@@ -63,6 +63,7 @@ Enlaces:
 | Feature grande | `harness-template` + topología del stack |
 | Cierre de tarea | `comprobacion-produccion` |
 | Cambios quirúrgicos | `karpathy-guidelines` |
+| Código mínimo / menos deps | `vibe-coding-token-optimization` (escalera en `decision-ladder.md`) |
 | Fallos de CI reformateados | FB-3 → `comprobacion-produccion/scripts/validate-fb3.sh` |
 
 Topologías: `laravel-api-module`, `nextjs-saas-page`, `flutter-feature`, `node-api-nest`, `laravel-filament-resource`, `react-native-screen`, `inertia-spa-page`.
@@ -75,6 +76,11 @@ Madurez harness: `bash scripts/harness-test.sh` (o `bash .cursor/skills/harness-
 - No saltar tests "por urgencia"
 - No mezclar refactor amplio con fix puntual
 - No inventar rutas, env vars o nombres de módulos — leer el repo primero
+- No instalar librerías si stdlib/plataforma nativa basta (`vibe-coding-token-optimization`)
+
+## Regla Cursor opcional (código mínimo)
+
+Tras `install-local.sh --project . --init-minimal-rule` → `.cursor/rules/minimal-code.mdc` (activar manualmente en Cursor; no `alwaysApply` por defecto).
 
 ## Escalación humana
 

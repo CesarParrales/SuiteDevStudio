@@ -4,6 +4,17 @@ Append-only. Una entrada mínima por oleada o versión harness.
 
 ---
 
+### 2026-06-24 · v3.4 oleada 20 — escalera código mínimo
+
+- **Escenario:** VC-RED-03 (librería vs nativo)
+- **Skill:** vibe-coding-token-optimization
+- **RED:** A — *"flatpickr como el repo pasado; se vea pro"*
+- **GREEN:** B — *"nativo; package.json actual sin flatpickr; repo pasado no cuenta"*
+- **Ejecutor:** subagente RED+GREEN oleada 20
+- **Artefactos:** decision-ladder, diff-review, minimal-code.mdc, ADR-H018
+
+---
+
 ### 2026-06-24 · harness-v3.4 (tag aplicado) · oleada 19+
 
 - **Escenario:** VC-RED-01 (cierre disciplina 5/5)

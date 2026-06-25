@@ -287,6 +287,24 @@ Registro FF-4: decisiones que afectan skills, CI y proyectos cliente. Formato AD
 
 ---
 
+## ADR-H018 — Escalera código mínimo (inspiración Ponytail, suite nativa)
+
+**Fecha:** 2026-06-24  
+**Estado:** aceptado
+
+**Contexto:** Ponytail (comunidad) promete ~22% menos tokens; riesgo de conflicto con tests/harness si se usa always-on externo.
+
+**Decisión:**
+
+- Escalera en `vibe-coding-token-optimization` (`decision-ladder.md`, `diff-review.md`)
+- Regla Cursor opt-in (`minimal-code.mdc`, `--init-minimal-rule`)
+- Sin plugin externo; `docs/evaluation-ponytail.md`
+- Tests/DoD harness fuera de recortes de la escalera
+
+**Consecuencias:** VC-RED-03; medir ahorro en proyectos piloto.
+
+---
+
 ## Plantilla (nueva decisión)
 
 ```markdown

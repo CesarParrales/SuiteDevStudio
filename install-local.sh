@@ -13,6 +13,7 @@
 #   ./install-local.sh --project /ruta --init-harness-test → copia harness-test-project.sh → scripts/harness-test.sh
 #   ./install-local.sh --project /ruta --init-code-map   → copia templates/code-map.md → docs/code-map.md
 #   ./install-local.sh --project /ruta --init-architecture → copia templates/docs/architecture/ → docs/architecture/
+#   ./install-local.sh --project /ruta --init-minimal-rule → copia templates/cursor/minimal-code.mdc → .cursor/rules/
 #   ./install-local.sh --project /ruta --bootstrap → todos los --init-* anteriores (requiere --project)
 #   ./install-local.sh --project /ruta --bootstrap --strict → bootstrap + valida plantillas personalizadas (exit 1 si placeholders)
 #
@@ -32,6 +33,7 @@ INIT_GITHUB=false
 INIT_HARNESS_TEST=false
 INIT_CODE_MAP=false
 INIT_ARCHITECTURE=false
+INIT_MINIMAL_RULE=false
 BOOTSTRAP_STRICT=false
 
 usage() {
@@ -83,6 +85,10 @@ while [[ $# -gt 0 ]]; do
       INIT_ARCHITECTURE=true
       shift
       ;;
+    --init-minimal-rule)
+      INIT_MINIMAL_RULE=true
+      shift
+      ;;
     --bootstrap)
       INIT_MEMORY=true
       INIT_AGENTS=true
@@ -106,7 +112,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ "$INIT_MEMORY" == true || "$INIT_AGENTS" == true || "$INIT_GITHUB" == true || "$INIT_HARNESS_TEST" == true || "$INIT_CODE_MAP" == true || "$INIT_ARCHITECTURE" == true ]]; then
+if [[ "$INIT_MEMORY" == true || "$INIT_AGENTS" == true || "$INIT_GITHUB" == true || "$INIT_HARNESS_TEST" == true || "$INIT_CODE_MAP" == true || "$INIT_ARCHITECTURE" == true || "$INIT_MINIMAL_RULE" == true ]]; then
   if [[ -z "$PROJECT_DIR" ]]; then
     echo "Error: flags --init-* y --bootstrap requieren --project /ruta" >&2
     exit 1
@@ -288,6 +294,24 @@ if [[ -n "$PROJECT_DIR" ]]; then
       fi
     else
       echo "Advertencia: no se encontró $ARCH_SRC" >&2
+    fi
+  fi
+
+  if [[ "$INIT_MINIMAL_RULE" == true ]]; then
+    RULE_TEMPLATE="$SCRIPT_DIR/templates/cursor/minimal-code.mdc"
+    RULE_DEST="$PROJECT_DIR/.cursor/rules/minimal-code.mdc"
+    if [[ -f "$RULE_TEMPLATE" ]]; then
+      if [[ -f "$RULE_DEST" ]]; then
+        echo ""
+        echo "→ minimal-code rule: ya existe ($RULE_DEST), no se sobrescribe"
+      else
+        mkdir -p "$PROJECT_DIR/.cursor/rules"
+        cp "$RULE_TEMPLATE" "$RULE_DEST"
+        echo ""
+        echo "→ minimal-code rule: creada ($RULE_DEST) — activar manualmente en Cursor"
+      fi
+    else
+      echo "Advertencia: no se encontró $RULE_TEMPLATE" >&2
     fi
   fi
 

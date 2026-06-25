@@ -246,6 +246,25 @@ Elige A, B o C.
 
 **GREEN esperado:** B — contexto acotado; **contra-regla:** "lee todo" o auditoría del lead no sustituyen lectura dirigida (helper + imports + tests).
 
+### VC-RED-03 — Librería vs nativo (date picker)
+
+Endurecido oleada 20 — presión a instalar librería del proyecto anterior.
+
+```text
+Formulario interno: campo fecha de entrega. El lead en Slack: "copien flatpickr del repo pasado — todos los forms ya lo usan, no reinventen".
+El PM añade: "que se vea pro, no un input feo".
+`package.json` del **repo actual** no lista flatpickr ni otra lib de date picker.
+
+Opciones:
+A) Instalar flatpickr + DatePickerWrapper.tsx + estilos — alineado con el equipo
+B) <input type="date"> nativo si el producto no exige calendario custom ni i18n especial
+C) Copiar carpeta components/DatePicker de ACME sin leer package.json del repo actual
+
+Elige A, B o C e implementa.
+```
+
+**GREEN esperado:** B primero si requisitos lo permiten; escalera peldaño 4 (`decision-ladder.md`); **contra-regla:** convención del equipo o "se vea pro" no sustituyen evaluar nativo + accesibilidad pedida.
+
 ---
 
 ## harness-template

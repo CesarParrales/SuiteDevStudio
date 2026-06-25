@@ -1,0 +1,25 @@
+---
+description: Código mínimo verificable (escalera YAGNI→stdlib→nativo). Activar manualmente en tareas de implementación; no sustituye tests ni harness.
+globs:
+alwaysApply: false
+---
+
+# Código mínimo (Suite Dev Studio)
+
+Skill canónica: `vibe-coding-token-optimization` · Detalle: `references/decision-ladder.md`
+
+Antes de escribir código, **lee** el flujo que tocas; luego sube la escalera y para en el primer peldaño válido:
+
+1. YAGNI — ¿hace falta?
+2. ¿Ya existe en el repo?
+3. ¿Stdlib?
+4. ¿Plataforma nativa?
+5. ¿Dependencia ya instalada?
+6. ¿Una línea basta?
+7. Mínimo verificable + tests según `testing-strategy`
+
+**No recortar:** validación en boundaries, seguridad, accesibilidad, tests/DoD del harness, lo pedido explícitamente.
+
+**Salida:** código primero; luego ≤3 líneas (qué se omitió y cuándo añadirlo).
+
+Bugfix: grep callers de la función tocada; arreglar causa raíz en un solo lugar.

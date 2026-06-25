@@ -17,6 +17,9 @@ req() {
 req install-local.sh
 req docs/releases/harness-v3.4.md
 req docs/harness-quarterly-2026-06.md
+req docs/evaluation-ponytail.md
+req templates/cursor/minimal-code.mdc
+req skills/vibe-coding-token-optimization/references/decision-ladder.md
 req scripts/tag-harness-release.sh
 req skills/skill-evolution/references/quarterly-harness.md
 req docs/harness-release-log.md
@@ -34,6 +37,11 @@ done
 
 if ! grep -q -- '--bootstrap' install-local.sh || ! grep -q -- '--strict' install-local.sh; then
   echo "install-local.sh sin --bootstrap o --strict"
+  failed=1
+fi
+
+if ! grep -q -- '--init-minimal-rule' install-local.sh; then
+  echo "install-local.sh sin --init-minimal-rule"
   failed=1
 fi
 
