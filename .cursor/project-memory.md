@@ -26,7 +26,7 @@ Comandos antes de cerrar cambios en `skills/` o CI:
 bash scripts/harness-test.sh
 ```
 
-Última verificación registrada: 2026-06-24 · tag `harness-v3.4` aplicado localmente
+Última verificación registrada: 2026-06-24 · oleada 20 · commit `6d23380`
 
 ## Harness del proyecto
 
@@ -37,6 +37,12 @@ bash scripts/harness-test.sh
 | Workflow cliente | `templates/github/harness-validate-project.yml` |
 
 ## Log de sesión (IN-3)
+
+### 2026-06-24 · Oleada 20 — escalera código mínimo (Ponytail opt-in)
+- Skills activas: vibe-coding-token-optimization, testing-skills-with-subagents
+- Gates: `harness-test.sh` → exit 0; meta-harness; `install-local.sh` → 38 skills
+- VC-RED-03: RED A → GREEN B (contra-regla: repo pasado ≠ reuse)
+- Artefactos: decision-ladder, diff-review, minimal-code.mdc, ADR-H018, evaluation-ponytail.md
 
 ### 2026-06-24 · Tag harness-v3.4 aplicado
 - Repo git inicializado en suite-dev-studio (TOSHIBA)
