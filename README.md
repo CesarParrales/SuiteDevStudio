@@ -72,6 +72,12 @@ Copia las 38 skills a `~/.cursor/skills/`. No borra skills personales ajenas a l
 
 Regla opt-in en proyectos: `./install-local.sh --project . --init-learnings-rule`
 
+**Errores repetidos:** regla global con `alwaysApply` (captura 2+ mismo error → HARNESS-FAILURES):
+
+```bash
+./install-local.sh --init-learnings-rule-global
+```
+
 ### 2. Bootstrap en un proyecto cliente
 
 Desde la raíz del repo de tu app:

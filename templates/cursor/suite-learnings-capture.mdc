@@ -1,15 +1,33 @@
 ---
-description: Al cerrar tareas con skills de Suite Dev Studio, registrar gaps en LEARNINGS.md de la skill usada (global o local).
-alwaysApply: false
+description: Captura errores repetidos y gaps de skills Suite Dev Studio en LEARNINGS/HARNESS-FAILURES al cerrar tareas.
+alwaysApply: true
 ---
 
-# Captura de aprendizaje — Suite Dev Studio (opt-in)
+# Captura de aprendizaje — Suite Dev Studio
 
-Cuando una tarea use una skill de la suite (`~/.cursor/skills/` o `.cursor/skills/` del proyecto):
+Cuando uses skills de la suite (`~/.cursor/skills/` o `.cursor/skills/` del proyecto):
 
-**Al cerrar**, si hubo gap, corrección o mejora de la skill (no del proyecto):
+## Disparadores (obligatorio al cerrar la tarea)
 
-1. Append en `LEARNINGS.md` de **esa skill** (misma carpeta que el `SKILL.md` cargado), sección `## Pendientes`:
+| Situación | Acción |
+|-----------|--------|
+| **Mismo error 2+ veces** en la sesión (lint, test, CI, comando, enfoque incorrecto) | Append en `~/.cursor/skills/HARNESS-FAILURES.md` **antes** de dar por cerrado |
+| **3+ iteraciones** sin avanzar (mismo fix, mismo fallo, mismo archivo) | HARNESS-FAILURES + escalar según `karpathy-guidelines` |
+| Gap de la skill (faltó paso, reference, default) | `LEARNINGS.md` de **la skill usada** (misma carpeta que su `SKILL.md`) |
+| Corrección del humano sobre algo que la skill ya cubría | LEARNINGS tipo `corrección` |
+| Error de CI/test con log crudo | Formato FB-3 en `comprobacion-produccion` + HARNESS-FAILURES si se repite |
+
+## Formato HARNESS-FAILURES (raíz de skills activa)
+
+```markdown
+### YYYY-MM-DD — <error repetido en una línea>
+- **Fallo:** hecho observable (comando + mensaje o patrón)
+- **Contexto:** skill activa, stack, intento N de M
+- **Remediación:** regla concreta que evita la repetición
+- **Estado:** abierto
+```
+
+## Formato LEARNINGS (por skill)
 
 ```markdown
 ### YYYY-MM-DD · contexto breve
@@ -18,8 +36,10 @@ Cuando una tarea use una skill de la suite (`~/.cursor/skills/` o `.cursor/skill
 - Cambio propuesto: ...
 ```
 
-2. Fallos **repetidos** del agente → `HARNESS-FAILURES.md` (raíz de skills activa).
+## Reglas
 
-3. **No** mezclar lecciones de skill en `project-memory.md` (L2 ≠ L3).
+- **L2 ≠ L3:** decisiones del repo → `.cursor/project-memory.md`; lecciones de skill → LEARNINGS; fallos del agente → HARNESS-FAILURES.
+- **No esperar** abrir `suite-dev-studio`: escribir en global; `collect-learnings.sh` lleva al canónico.
+- Si el fallo ya tiene entrada **abierta** en HARNESS-FAILURES, actualizar esa entrada (no duplicar).
 
-Periodicamente en el repo canónico: `collect-learnings.sh` → `skill-evolution` → `install-local.sh`.
+Mantenimiento suite: `collect-learnings.sh` → `skill-evolution` Modo 1 → `install-local.sh`.

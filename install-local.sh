@@ -14,7 +14,8 @@
 #   ./install-local.sh --project /ruta --init-code-map   → copia templates/code-map.md → docs/code-map.md
 #   ./install-local.sh --project /ruta --init-architecture → copia templates/docs/architecture/ → docs/architecture/
 #   ./install-local.sh --project /ruta --init-minimal-rule → copia templates/cursor/minimal-code.mdc → .cursor/rules/
-#   ./install-local.sh --project /ruta --init-learnings-rule → copia templates/cursor/suite-learnings-capture.mdc → .cursor/rules/
+#   ./install-local.sh --init-learnings-rule → copia regla → .cursor/rules/ del proyecto
+#   ./install-local.sh --init-learnings-rule-global → regla en ~/.cursor/rules/ (captura errores repetidos)
 #   ./install-local.sh --project /ruta --bootstrap → todos los --init-* anteriores (requiere --project)
 #   ./install-local.sh --project /ruta --bootstrap --strict → bootstrap + valida plantillas personalizadas (exit 1 si placeholders)
 #
@@ -39,6 +40,7 @@ INIT_CODE_MAP=false
 INIT_ARCHITECTURE=false
 INIT_MINIMAL_RULE=false
 INIT_LEARNINGS_RULE=false
+INIT_LEARNINGS_RULE_GLOBAL=false
 BOOTSTRAP_STRICT=false
 
 usage() {
@@ -96,6 +98,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --init-learnings-rule)
       INIT_LEARNINGS_RULE=true
+      shift
+      ;;
+    --init-learnings-rule-global)
+      INIT_LEARNINGS_RULE_GLOBAL=true
       shift
       ;;
     --bootstrap)
@@ -388,6 +394,19 @@ if [[ -n "$PROJECT_DIR" ]]; then
     else
       echo "Advertencia: no se encontró $STRICT_SCRIPT" >&2
     fi
+  fi
+fi
+
+if [[ "$INIT_LEARNINGS_RULE_GLOBAL" == true ]]; then
+  RULE_TEMPLATE="$SCRIPT_DIR/templates/cursor/suite-learnings-capture.mdc"
+  RULE_DEST="$HOME/.cursor/rules/suite-learnings-capture.mdc"
+  if [[ -f "$RULE_TEMPLATE" ]]; then
+    mkdir -p "$HOME/.cursor/rules"
+    cp "$RULE_TEMPLATE" "$RULE_DEST"
+    echo ""
+    echo "→ suite-learnings-capture: instalada global ($RULE_DEST) — alwaysApply activo"
+  else
+    echo "Advertencia: no se encontró $RULE_TEMPLATE" >&2
   fi
 fi
 

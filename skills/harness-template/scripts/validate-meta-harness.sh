@@ -48,8 +48,8 @@ if ! grep -q -- '--init-minimal-rule' install-local.sh; then
   failed=1
 fi
 
-if ! grep -q -- '--init-learnings-rule' install-local.sh; then
-  echo "install-local.sh sin --init-learnings-rule"
+if ! grep -q -- '--init-learnings-rule-global' install-local.sh; then
+  echo "install-local.sh sin --init-learnings-rule-global"
   failed=1
 fi
 

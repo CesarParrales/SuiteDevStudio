@@ -2,7 +2,7 @@
 
 Registro central del **steering loop** (Harness Engineering): cuando el agente falla de forma repetida, documentar el fallo y la regla/skill que lo previene. `skill-evolution` consolida entradas recurrentes en skills permanentes.
 
-**Cuándo escribir aquí:** el agente violó una convención, entró en bucle de reintentos, o un humano tuvo que corregir algo que el harness debió prevenir.
+**Cuándo escribir aquí:** el agente violó una convención, entró en bucle de reintentos, **repitió el mismo error 2+ veces**, necesitó **3+ iteraciones** para lo mismo, o un humano tuvo que corregir algo que el harness debió prevenir.
 
 ## Formato de entrada
 
