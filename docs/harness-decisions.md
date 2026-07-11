@@ -301,7 +301,26 @@ Registro FF-4: decisiones que afectan skills, CI y proyectos cliente. Formato AD
 - Sin plugin externo; `docs/evaluation-ponytail.md`
 - Tests/DoD harness fuera de recortes de la escalera
 
-**Consecuencias:** VC-RED-03; medir ahorro en proyectos piloto.
+**Consecuencias:** VC-RED-03; medir ahorro con métricas de diff en proyectos reales.
+
+---
+
+## ADR-H019 — Loop L3 universal (editor → canónico)
+
+**Fecha:** 2026-07-10  
+**Estado:** aceptado
+
+**Contexto:** L3 debía alimentarse de cualquier uso de skills en Cursor (`~/.cursor/skills/`), no solo de proyectos piloto. `install-local.sh` sobrescribía LEARNINGS del global.
+
+**Decisión:**
+
+- `scripts/collect-learnings.sh` + `learnings_merge.py` — harvest global/proyecto → canónico
+- `install-local.sh` preserva entradas `## Pendientes` del destino no presentes en canónico
+- `skill-evolution` Modo 1 paso 0 = collect; Modo 6 incluye collect antes de sync
+- Regla opt-in `suite-learnings-capture.mdc` (`--init-learnings-rule`)
+- L3 agnóstico al repo abierto; L2 sigue en project-memory
+
+**Consecuencias:** Flujo periódico collect → consolidate → install; dominio puede acumular LEARNINGS desde cualquier chat.
 
 ---
 

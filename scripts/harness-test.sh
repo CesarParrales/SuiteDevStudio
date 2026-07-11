@@ -53,6 +53,10 @@ echo "→ Meta-harness (~98%)"
 chmod +x skills/harness-template/scripts/validate-meta-harness.sh
 skills/harness-template/scripts/validate-meta-harness.sh
 
+echo "→ Collect learnings (dry-run)"
+chmod +x scripts/collect-learnings.sh scripts/learnings_merge.py
+scripts/collect-learnings.sh --dry-run >/dev/null
+
 echo "→ Readiness /20 (umbral CI 16)"
 chmod +x skills/harness-template/scripts/harness-readiness.sh
 skills/harness-template/scripts/harness-readiness.sh --suite ./skills --project . --ci

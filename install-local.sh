@@ -14,15 +14,19 @@
 #   ./install-local.sh --project /ruta --init-code-map   → copia templates/code-map.md → docs/code-map.md
 #   ./install-local.sh --project /ruta --init-architecture → copia templates/docs/architecture/ → docs/architecture/
 #   ./install-local.sh --project /ruta --init-minimal-rule → copia templates/cursor/minimal-code.mdc → .cursor/rules/
+#   ./install-local.sh --project /ruta --init-learnings-rule → copia templates/cursor/suite-learnings-capture.mdc → .cursor/rules/
 #   ./install-local.sh --project /ruta --bootstrap → todos los --init-* anteriores (requiere --project)
 #   ./install-local.sh --project /ruta --bootstrap --strict → bootstrap + valida plantillas personalizadas (exit 1 si placeholders)
 #
-# No elimina skills personales en ~/.cursor/skills/ que no pertenezcan a la suite.
+# LEARNINGS: al instalar, se preservan entradas ## Pendientes del destino que aún no estén
+# en la copia canónica (evita perder aprendizajes escritos en ~/.cursor/skills/ durante uso).
+# Flujo recomendado: collect-learnings.sh → skill-evolution → install-local.sh
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SUITE="$SCRIPT_DIR/skills"
 GLOBAL_DIR="${CURSOR_SKILLS_DIR:-$HOME/.cursor/skills}"
+LEARNINGS_MERGE="$SCRIPT_DIR/scripts/learnings_merge.py"
 
 INSTALL_GLOBAL=true
 PROJECT_DIR=""
@@ -34,6 +38,7 @@ INIT_HARNESS_TEST=false
 INIT_CODE_MAP=false
 INIT_ARCHITECTURE=false
 INIT_MINIMAL_RULE=false
+INIT_LEARNINGS_RULE=false
 BOOTSTRAP_STRICT=false
 
 usage() {
@@ -89,6 +94,10 @@ while [[ $# -gt 0 ]]; do
       INIT_MINIMAL_RULE=true
       shift
       ;;
+    --init-learnings-rule)
+      INIT_LEARNINGS_RULE=true
+      shift
+      ;;
     --bootstrap)
       INIT_MEMORY=true
       INIT_AGENTS=true
@@ -112,7 +121,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ "$INIT_MEMORY" == true || "$INIT_AGENTS" == true || "$INIT_GITHUB" == true || "$INIT_HARNESS_TEST" == true || "$INIT_CODE_MAP" == true || "$INIT_ARCHITECTURE" == true || "$INIT_MINIMAL_RULE" == true ]]; then
+if [[ "$INIT_MEMORY" == true || "$INIT_AGENTS" == true || "$INIT_GITHUB" == true || "$INIT_HARNESS_TEST" == true || "$INIT_CODE_MAP" == true || "$INIT_ARCHITECTURE" == true || "$INIT_MINIMAL_RULE" == true || "$INIT_LEARNINGS_RULE" == true ]]; then
   if [[ -z "$PROJECT_DIR" ]]; then
     echo "Error: flags --init-* y --bootstrap requieren --project /ruta" >&2
     exit 1
@@ -146,6 +155,22 @@ should_install() {
   return 1
 }
 
+preserve_learnings() {
+  local target_file="$1"
+  local previous_file="$2"
+  [[ -f "$previous_file" ]] || return 0
+  [[ -f "$LEARNINGS_MERGE" ]] || return 0
+  python3 "$LEARNINGS_MERGE" merge-file --target "$target_file" --source "$previous_file" 2>/dev/null || true
+}
+
+preserve_harness_failures() {
+  local target_file="$1"
+  local previous_file="$2"
+  [[ -f "$previous_file" ]] || return 0
+  [[ -f "$LEARNINGS_MERGE" ]] || return 0
+  python3 "$LEARNINGS_MERGE" merge-hf --target "$target_file" --source "$previous_file" 2>/dev/null || true
+}
+
 install_to() {
   local target="$1"
   local label="$2"
@@ -162,6 +187,12 @@ install_to() {
     should_install "$name" || continue
 
     local dest="$target/$name"
+    local prev_learnings=""
+    if [[ -f "$dest/LEARNINGS.md" ]]; then
+      prev_learnings="$(mktemp)"
+      cp "$dest/LEARNINGS.md" "$prev_learnings"
+    fi
+
     if [[ -L "$dest" ]]; then
       rm "$dest"
     elif [[ -d "$dest" ]]; then
@@ -169,13 +200,28 @@ install_to() {
     fi
 
     cp -R "$skill" "$dest"
+
+    if [[ -n "$prev_learnings" ]]; then
+      preserve_learnings "$dest/LEARNINGS.md" "$prev_learnings"
+      rm -f "$prev_learnings"
+    fi
+
     count=$((count + 1))
     echo "  ✓ $name"
   done
 
   # Artefactos en la raíz de skills/ (fuera de carpetas con SKILL.md)
   if [[ -f "$SUITE/HARNESS-FAILURES.md" ]]; then
+    local prev_hf=""
+    if [[ -f "$target/HARNESS-FAILURES.md" ]]; then
+      prev_hf="$(mktemp)"
+      cp "$target/HARNESS-FAILURES.md" "$prev_hf"
+    fi
     cp "$SUITE/HARNESS-FAILURES.md" "$target/HARNESS-FAILURES.md"
+    if [[ -n "$prev_hf" ]]; then
+      preserve_harness_failures "$target/HARNESS-FAILURES.md" "$prev_hf"
+      rm -f "$prev_hf"
+    fi
     echo "  ✓ HARNESS-FAILURES.md"
   fi
 
@@ -315,6 +361,24 @@ if [[ -n "$PROJECT_DIR" ]]; then
     fi
   fi
 
+  if [[ "$INIT_LEARNINGS_RULE" == true ]]; then
+    RULE_TEMPLATE="$SCRIPT_DIR/templates/cursor/suite-learnings-capture.mdc"
+    RULE_DEST="$PROJECT_DIR/.cursor/rules/suite-learnings-capture.mdc"
+    if [[ -f "$RULE_TEMPLATE" ]]; then
+      if [[ -f "$RULE_DEST" ]]; then
+        echo ""
+        echo "→ suite-learnings-capture rule: ya existe ($RULE_DEST), no se sobrescribe"
+      else
+        mkdir -p "$PROJECT_DIR/.cursor/rules"
+        cp "$RULE_TEMPLATE" "$RULE_DEST"
+        echo ""
+        echo "→ suite-learnings-capture rule: creada ($RULE_DEST) — opt-in, activar en Cursor"
+      fi
+    else
+      echo "Advertencia: no se encontró $RULE_TEMPLATE" >&2
+    fi
+  fi
+
   if [[ "$BOOTSTRAP_STRICT" == true ]]; then
     STRICT_SCRIPT="$SCRIPT_DIR/skills/harness-template/scripts/bootstrap-strict-check.sh"
     if [[ -f "$STRICT_SCRIPT" ]]; then
@@ -334,4 +398,4 @@ if [[ -n "$PROJECT_DIR" ]] && [[ "$INIT_AGENTS" == true || "$INIT_CODE_MAP" == t
     echo "  O ejecuta: install-local.sh --project . --bootstrap --strict (tras personalizar)"
   fi
 fi
-echo "Listo. Ejecuta de nuevo tras editar skills en suite-dev-studio para sincronizar."
+echo "Listo. Tras editar skills: collect-learnings.sh → skill-evolution → install-local.sh"

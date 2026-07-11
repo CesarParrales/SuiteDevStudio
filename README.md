@@ -62,6 +62,16 @@ cd SuiteDevStudio
 
 Copia las 38 skills a `~/.cursor/skills/`. No borra skills personales ajenas a la suite.
 
+**Aprendizaje (L3):** al usar skills en cualquier chat, registrar gaps en `LEARNINGS.md` de la skill. Periodicamente en el repo canónico:
+
+```bash
+./scripts/collect-learnings.sh    # global → canónico
+# skill-evolution Modo 1 (consolidar)
+./install-local.sh                # canónico → global
+```
+
+Regla opt-in en proyectos: `./install-local.sh --project . --init-learnings-rule`
+
 ### 2. Bootstrap en un proyecto cliente
 
 Desde la raíz del repo de tu app:

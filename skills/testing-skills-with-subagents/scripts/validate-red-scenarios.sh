@@ -12,7 +12,7 @@ fi
 [ -f "$FILE" ] || { echo "No existe: $FILE"; exit 1; }
 
 failed=0
-ids=$(grep -oE '^### (CP|KG|TS|VC|HT)-RED-[0-9]+' "$FILE" | awk '{print $2}' | sort)
+ids=$(grep -oE '^### (CP|KG|TS|VC|HT|SE)-RED-[0-9]+' "$FILE" | awk '{print $2}' | sort)
 dupes=$(echo "$ids" | uniq -d)
 if [ -n "$dupes" ]; then
   echo "IDs duplicados: $dupes"
@@ -39,7 +39,7 @@ while IFS= read -r id; do
   fi
 done <<< "$ids"
 
-for prefix in CP KG TS VC HT; do
+for prefix in CP KG TS VC HT SE; do
   n=$(echo "$ids" | grep -c "^${prefix}-" || true)
   if [ "$n" -lt 1 ]; then
     echo "Sin escenarios para prefijo $prefix"

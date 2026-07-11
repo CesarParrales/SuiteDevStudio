@@ -21,6 +21,9 @@ req docs/evaluation-ponytail.md
 req templates/cursor/minimal-code.mdc
 req skills/vibe-coding-token-optimization/references/decision-ladder.md
 req scripts/tag-harness-release.sh
+req scripts/collect-learnings.sh
+req scripts/learnings_merge.py
+req templates/cursor/suite-learnings-capture.mdc
 req skills/skill-evolution/references/quarterly-harness.md
 req docs/harness-release-log.md
 req docs/harness-decisions.md
@@ -42,6 +45,11 @@ fi
 
 if ! grep -q -- '--init-minimal-rule' install-local.sh; then
   echo "install-local.sh sin --init-minimal-rule"
+  failed=1
+fi
+
+if ! grep -q -- '--init-learnings-rule' install-local.sh; then
+  echo "install-local.sh sin --init-learnings-rule"
   failed=1
 fi
 

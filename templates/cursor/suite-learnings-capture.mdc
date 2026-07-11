@@ -1,0 +1,25 @@
+---
+description: Al cerrar tareas con skills de Suite Dev Studio, registrar gaps en LEARNINGS.md de la skill usada (global o local).
+alwaysApply: false
+---
+
+# Captura de aprendizaje — Suite Dev Studio (opt-in)
+
+Cuando una tarea use una skill de la suite (`~/.cursor/skills/` o `.cursor/skills/` del proyecto):
+
+**Al cerrar**, si hubo gap, corrección o mejora de la skill (no del proyecto):
+
+1. Append en `LEARNINGS.md` de **esa skill** (misma carpeta que el `SKILL.md` cargado), sección `## Pendientes`:
+
+```markdown
+### YYYY-MM-DD · contexto breve
+- Tipo: gap | corrección | mejora
+- Hallazgo: ...
+- Cambio propuesto: ...
+```
+
+2. Fallos **repetidos** del agente → `HARNESS-FAILURES.md` (raíz de skills activa).
+
+3. **No** mezclar lecciones de skill en `project-memory.md` (L2 ≠ L3).
+
+Periodicamente en el repo canónico: `collect-learnings.sh` → `skill-evolution` → `install-local.sh`.

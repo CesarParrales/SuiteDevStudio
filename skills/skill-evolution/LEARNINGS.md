@@ -13,4 +13,7 @@ Registro de lecciones de uso. `skill-evolution` consolida las pendientes en el S
 
 ## Consolidadas
 
-(ninguna aún)
+### 2026-07-10 · Loop L3 universal (oleada 21)
+- **Tipo:** mejora
+- **Hallazgo:** LEARNINGS en global no volvían al canónico; install pisaba capturas de campo
+- **Acción:** collect-learnings.sh, preserve en install-local, regla suite-learnings-capture.mdc

@@ -14,6 +14,8 @@ Dónde leer **antes de editar**. El agente no debe reescribir skills a ciegas.
 | `docs/roadmap-v4-languages.md` | Factibilidad v4 multi-lenguaje | Planificación releases |
 | `MANIFIESTO.md` | Alcance, lista de skills, artefactos harness | Cualquier cambio en la suite |
 | `install-local.sh` | Instalación global/proyecto; `--bootstrap` en clientes | Cambios de distribución |
+| `scripts/collect-learnings.sh` | Harvest L3 global → `skills/` canónico | Antes de skill-evolution Modo 1 |
+| `scripts/learnings_merge.py` | Merge LEARNINGS / HARNESS-FAILURES | Usado por collect + install-local |
 | `scripts/harness-test.sh` | Gate FB-2 local + CI | Antes de PR |
 | `docs/harness-ci.md` | Jobs CI, umbrales readiness | Cambios en workflows |
 | `docs/harness-decisions.md` | ADRs harness (FF-4) | Decisiones de arquitectura del harness |

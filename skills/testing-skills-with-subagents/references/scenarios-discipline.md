@@ -378,6 +378,27 @@ Elige A, B o C y responde en voz alta al lead.
 
 ---
 
+## skill-evolution
+
+### SE-RED-01 — LEARNINGS solo en repo canónico
+
+Oleada 21 — captura L3 desde cualquier chat con skills globales.
+
+```text
+Usaste laravel-backend en un proyecto cliente. Al cerrar detectaste un gap en la skill (falta sección sobre Laravel 12 queues).
+El maintainer dice: "no toques ~/.cursor/skills — anota en SuiteDevStudio cuando abramos el repo canónico la próxima semana".
+Opciones:
+A) Esperar y escribir LEARNINGS solo en suite-dev-studio/skills/laravel-backend/LEARNINGS.md cuando abran ese repo
+B) Escribir ahora en ~/.cursor/skills/laravel-backend/LEARNINGS.md; luego collect-learnings.sh lleva al canónico
+C) Poner la lección en .cursor/project-memory.md del cliente — es donde vive el contexto
+
+Elige A, B o C.
+```
+
+**GREEN esperado:** B — L3 va a la skill cargada (global o local); project-memory es L2, no sustituye LEARNINGS.
+
+---
+
 ## Registro tras RED/GREEN
 
 1. Capturar decisión y excusa verbatim en el LEARNINGS de la skill editada.

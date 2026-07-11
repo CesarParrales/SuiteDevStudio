@@ -1,6 +1,6 @@
 # Memoria del proyecto — Suite Dev Studio
 
-Capa L2 del repo canónico de skills. `last_updated: 2026-06-24`
+Capa L2 del repo canónico de skills. `last_updated: 2026-07-10`
 
 ## Fuentes de verdad
 
@@ -26,7 +26,7 @@ Comandos antes de cerrar cambios en `skills/` o CI:
 bash scripts/harness-test.sh
 ```
 
-Última verificación registrada: 2026-06-24 · oleada 20 · commit `6d23380`
+Última verificación registrada: 2026-07-10 · oleada 21 · loop L3 universal
 
 ## Harness del proyecto
 
@@ -37,6 +37,11 @@ bash scripts/harness-test.sh
 | Workflow cliente | `templates/github/harness-validate-project.yml` |
 
 ## Log de sesión (IN-3)
+
+### 2026-07-10 · Oleada 21 — loop L3 universal (editor → canónico)
+- Skills activas: skill-evolution, harness-template
+- Gates: `harness-test.sh` → exit 0; meta-harness; collect-learnings dry-run
+- Artefactos: collect-learnings.sh, learnings_merge.py, preserve install-local, ADR-H019
 
 ### 2026-06-24 · Oleada 20 — escalera código mínimo (Ponytail opt-in)
 - Skills activas: vibe-coding-token-optimization, testing-skills-with-subagents

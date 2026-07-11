@@ -29,7 +29,7 @@ La suite usa memoria en capas para reducir fricción y tokens:
 | L0 | Chat / sesión | Siempre | Resumen al cerrar si el usuario lo pide |
 | L1 | `SKILL.md` + `references/` | Al activar la skill | Solo vía `skill-evolution` (consolidación) |
 | L2 | `.cursor/project-memory.md` del repo | Paso 0 de skills con `## Memoria` | Decisiones de proyecto, gates verificados |
-| L3 | `LEARNINGS.md` por skill | `## Pendientes` al iniciar si hay entradas | Gaps/correcciones al cerrar tarea |
+| L3 | `LEARNINGS.md` por skill | `## Pendientes` al iniciar si hay entradas | Gaps/correcciones al cerrar tarea (ruta de la skill cargada: global o local) |
 
 **Reglas:** L2 complementa `context.md`/PRD, no los reemplaza. L3 no edita SKILL.md directamente — esta skill consolida. Graphify (`graphify-integration`) es opt-in vía project-memory o petición explícita.
 
@@ -41,7 +41,18 @@ Plantillas: `templates/project-memory.md`, `templates/memoria-section.md`.
 
 ### Modo 1 — Consolidar aprendizajes (default)
 
-1. **Recolectar**: busca entradas pendientes en toda la suite:
+0. **Recolectar** aprendizajes de uso en Cursor (editor global y/o proyecto) hacia el repo canónico:
+
+```bash
+bash scripts/collect-learnings.sh
+# Opcional: incluir copia local de un proyecto
+bash scripts/collect-learnings.sh --source-project /ruta/al/proyecto
+```
+
+   Fuentes: `~/.cursor/skills/` (global), `.cursor/skills/` del proyecto si se indica.
+   No requiere proyecto piloto — captura cualquier tarea donde se usó una skill.
+
+1. **Recolectar pendientes** en la suite canónica:
 
 ```bash
 grep -rln "### " skills/*/LEARNINGS.md
@@ -151,7 +162,8 @@ Al cerrar una oleada del MANIFIESTO harness (v3.x):
 2. Ejecutar `bash scripts/harness-test.sh`.
 3. **RED + GREEN** de 1 escenario (`scenarios-discipline.md`) con subagentes frescos.
 4. Append en [docs/harness-release-log.md](../../../docs/harness-release-log.md).
-5. Sincronizar skills a `~/.cursor/skills/` si hubo cambios.
+5. `bash scripts/collect-learnings.sh` (harvest global → canónico).
+6. Sincronizar skills a `~/.cursor/skills/` si hubo cambios (`./install-local.sh`).
 
 ```bash
 skills/testing-skills-with-subagents/scripts/validate-release-red.sh

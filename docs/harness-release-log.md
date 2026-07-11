@@ -4,6 +4,17 @@ Append-only. Una entrada mínima por oleada o versión harness.
 
 ---
 
+### 2026-07-10 · v3.4 oleada 21 — loop L3 universal
+
+- **Escenario:** SE-RED-01 (LEARNINGS solo en repo canónico)
+- **Skill:** skill-evolution
+- **RED:** A — *"esperar repo canónico; no tocar ~/.cursor/skills"*
+- **GREEN:** B — *"LEARNINGS en skill cargada; collect-learnings.sh → canónico"*
+- **Ejecutor:** oleada 21
+- **Artefactos:** collect-learnings.sh, learnings_merge.py, ADR-H019, suite-learnings-capture.mdc
+
+---
+
 ### 2026-06-24 · v3.4 oleada 20 — escalera código mínimo
 
 - **Escenario:** VC-RED-03 (librería vs nativo)

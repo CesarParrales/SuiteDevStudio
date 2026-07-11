@@ -74,7 +74,9 @@ Total: 38 skills (33 de dominio + 4 meta/proceso + 1 integración opt-in)
   docs/harness-quarterly-2026-06.md → Informe Modo 7 trimestral
   docs/evaluation-ponytail.md → Escalera código mínimo (ideas adaptadas, opt-in)
   install-local.sh --init-minimal-rule → Regla Cursor minimal-code (no alwaysApply)
-  Madurez harness estimada: ~100% (oleada 20 escalera anti-bloat)
+  scripts/collect-learnings.sh → Harvest L3 global/proyecto → canónico (oleada 21)
+  install-local.sh --init-learnings-rule → Regla opt-in captura LEARNINGS al cerrar tareas
+  Madurez harness estimada: ~100% (oleada 21 loop L3 universal)
   templates/AGENTS.md      → Mapa ~100 líneas para repos (--init-agents)
   testing-skills-with-subagents → RED/GREEN de skills de disciplina (subagentes)
   HARNESS-FAILURES.md      → Catálogo global de fallos del agente (raíz skills/)
@@ -113,10 +115,12 @@ Cada skill cumple:
   Meta (`skill-evolution`) y opt-in (`graphify-integration`) usan protocolo propio.
 
 ## Sistema de aprendizaje
-  1. Al usar una skill, el agente registra gaps/correcciones/mejoras en su LEARNINGS.md
-  2. skill-evolution consolida las entradas pendientes en los SKILL.md (con aprobación)
-  3. skill-evolution audita integridad (enlaces, frontmatter, límites de líneas)
-  4. Datos con caducidad aislados con last_updated + revisar_cada; skill-evolution
+  1. Al usar una skill (global ~/.cursor/skills/ o local), el agente registra gaps en su LEARNINGS.md
+  2. collect-learnings.sh trae L3 del editor → repo canónico (sin proyecto piloto)
+  3. skill-evolution consolida las entradas pendientes en los SKILL.md (con aprobación)
+  4. install-local.sh republica al editor preservando LEARNINGS no duplicados
+  5. skill-evolution audita integridad (enlaces, frontmatter, límites de líneas)
+  6. Datos con caducidad aislados con last_updated + revisar_cada; skill-evolution
      lista los vencidos y los actualiza vía web
 
 ## Notas

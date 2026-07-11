@@ -8,7 +8,8 @@ Checklist al cerrar una **oleada** o versión harness del MANIFIESTO (v3.x).
 2. **1 escenario RED + GREEN** (subagente fresco, `testing-skills-with-subagents`)
 3. Entrada en [harness-release-log.md](harness-release-log.md)
 4. Si fallo sistémico → `skills/HARNESS-FAILURES.md` + skill-evolution Modo 4
-5. Sincronizar `~/.cursor/skills/` si aplica
+5. `bash scripts/collect-learnings.sh` (harvest global → canónico)
+6. Sincronizar `~/.cursor/skills/` con `./install-local.sh`
 
 ## Cómo ejecutar RED/GREEN
 

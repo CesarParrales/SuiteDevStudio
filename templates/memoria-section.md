@@ -13,8 +13,10 @@
 **Al cerrar:**
 
 - Decisiones del **proyecto** → `.cursor/project-memory.md` (sección Decisiones).
-- Gaps de la **skill** → `LEARNINGS.md` de esta skill.
-- Fallos repetidos del agente → `HARNESS-FAILURES.md` (vía `skill-evolution` Modo 4).
+- Gaps de la **skill** → `LEARNINGS.md` de **la skill cargada** (p. ej. `~/.cursor/skills/<skill>/LEARNINGS.md` en Cursor global, o `.cursor/skills/<skill>/` si el proyecto tiene copia local). No atar L3 a un repo cliente concreto.
+- Fallos repetidos del agente → `HARNESS-FAILURES.md` en la raíz de skills activa (global o local).
 - Entregable → archivo en el repo (`docs/…`), no solo en el chat.
+
+**Ciclo suite:** `collect-learnings.sh` (global → canónico) → `skill-evolution` Modo 1 → `./install-local.sh`.
 
 **Graphify:** solo si project-memory marca `Graphify: enabled` o el usuario lo pide explícitamente → skill `graphify-integration`. No reemplaza gates ni fuentes de verdad del proyecto.
