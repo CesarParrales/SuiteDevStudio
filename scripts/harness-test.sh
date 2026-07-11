@@ -53,9 +53,16 @@ echo "→ Meta-harness (~98%)"
 chmod +x skills/harness-template/scripts/validate-meta-harness.sh
 skills/harness-template/scripts/validate-meta-harness.sh
 
+echo "→ Learnings merge (tests fixture)"
+python3 scripts/test-learnings-merge.py
+
 echo "→ Collect learnings (dry-run)"
 chmod +x scripts/collect-learnings.sh scripts/learnings_merge.py
 scripts/collect-learnings.sh --dry-run >/dev/null
+
+echo "→ LEARNINGS.md presente en cada skill"
+missing=$(for d in skills/*/; do if [ -f "$d/SKILL.md" ] && [ ! -f "$d/LEARNINGS.md" ]; then echo "$d"; fi; done)
+[ -z "$missing" ] || { echo "Skills sin LEARNINGS.md:"; echo "$missing"; exit 1; }
 
 echo "→ Readiness /20 (umbral CI 16)"
 chmod +x skills/harness-template/scripts/harness-readiness.sh

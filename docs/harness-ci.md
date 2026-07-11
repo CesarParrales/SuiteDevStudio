@@ -15,6 +15,7 @@ Archivo: [`.github/workflows/harness-validate.yml`](../.github/workflows/harness
 | `red-scenarios` | Estructura de `scenarios-discipline.md` (IDs + GREEN) |
 | `release-red` | `validate-release-red.sh` — log ≤90 días |
 | `meta-harness` | `validate-meta-harness.sh` — artefactos ~98% |
+| `learnings-loop` | Tests de `learnings_merge.py`, collect dry-run, LEARNINGS.md por skill |
 
 **Local (todo en uno):** `bash scripts/harness-test.sh`
 
@@ -58,7 +59,7 @@ Tras `--bootstrap`, personalizar `AGENTS.md`, `docs/code-map.md` y `.cursor/proj
 bash skills/harness-template/scripts/validate-meta-harness.sh
 ```
 
-Ver [harness-meta-checklist.md](../harness-meta-checklist.md).
+Ver [harness-meta-checklist.md](harness-meta-checklist.md).
 
 ## Readiness /20 (Modo 5)
 

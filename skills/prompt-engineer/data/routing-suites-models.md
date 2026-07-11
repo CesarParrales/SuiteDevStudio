@@ -1,10 +1,13 @@
 ---
 data_file: tool-routing
-last_updated: 2025-05-26
+last_updated: 2026-07-10
 validity_period: 6 months
-next_update_expected: 2025-11-26
+next_update_expected: 2027-01-10
 notes: "Actualizar cuando aparezcan nuevas herramientas relevantes
-        o cuando las existentes cambien su sintaxis de prompting."
+        o cuando las existentes cambien su sintaxis de prompting.
+        Los templates de estructura de prompt (Firefly, Runway, Udio, etc.)
+        son estables entre versiones; verificar límites (duración, params)
+        si el proyecto depende de ellos."
 ---
 
 # Datos: Routing de Herramientas y Templates Base
@@ -299,9 +302,9 @@ Usar como referencia de diseño, no como especificación técnica oficial.
 
 ---
 data_file: reasoning-models
-last_updated: 2026-05-31
+last_updated: 2026-07-10
 validity_period: 2 months
-next_update_expected: 2026-07-31
+next_update_expected: 2026-09-10
 notes: "ACTUALIZAR CON FRECUENCIA. Los modelos nativamente razonadores
         se actualizan y lanzan constantemente. Esta lista puede quedar
         desactualizada en semanas. Verificar antes de usar."
@@ -312,31 +315,37 @@ agent_instruction: >
   la regla de no-CoT.
 ---
 
-# Datos: Modelos Nativamente Razonadores (mayo 2026)
+# Datos: Modelos Nativamente Razonadores (julio 2026)
 
 ## Modelos que NO deben recibir Chain of Thought explícito
 
 ```
 OpenAI:
-  GPT-5.5 Thinking                   → razonador nativo (lanzado may 2026)
+  GPT-5.6 Sol / Terra / Luna         → familia flagship GA 9 jul 2026
+                                       (Sol soporta modo `ultra` multi-agente)
+  GPT-5.5 Thinking                   → razonador nativo (may 2026)
   GPT-5.4 Thinking                   → razonador nativo
   o3, o3-mini, o4-mini               → razonadores clásicos de OpenAI
   o1, o1-mini, o1-preview            → generación anterior, mismo principio
   → CoT explícito degrada el output en todos.
 
 Anthropic:
-  Claude Opus 4.7 (extended thinking) → cuando el usuario activa explícitamente
-  Claude Opus 4.6 (extended thinking) → extended thinking
+  Claude Fable 5 (adaptive reasoning) → Mythos-class; razonamiento adaptativo
+                                        nativo (reactivado 1 jul 2026)
+  Claude Sonnet 5 (thinking)          → default Anthropic desde 30 jun 2026
+  Claude Opus 4.8 / 4.7 (ext. think.) → cuando el usuario activa thinking
   → Claude en modo normal SÍ se beneficia de CoT.
   → Verificar si el usuario está en modo thinking antes de aplicar regla.
 
 Google:
+  Gemini 3.5 Pro (preview/GA jul)    → thinking nativo
   Gemini 3.5 Flash (thinking mode)   → cuando thinking está activo
   Gemini 3.1 Pro (thinking mode)     → cuando thinking está activo
-  Gemini 2.5 Pro / Flash (thinking)  → versiones anteriores
   → El modo thinking se activa explícitamente — verificar.
 
 xAI:
+  Grok 4.5 (8 jul 2026)              → razonamiento eficiente nativo;
+                                       entrenado junto a Cursor, $2/$6 por 1M
   Grok 4.3 (modo thinking)           → thinking disponible en Grok 4.x
   → Verificar si el usuario está usando el modo thinking.
 
@@ -353,15 +362,16 @@ Qwen:
 ## Modelos estándar que SÍ se benefician de CoT
 
 ```
-Anthropic:   Claude Sonnet 4.6 (modo normal, sin extended thinking)
-             Claude Opus 4.6 / 4.7 (modo normal)
+Anthropic:   Claude Sonnet 4.6 / Sonnet 5 (modo normal, sin thinking)
+             Claude Opus 4.6 / 4.7 / 4.8 (modo normal)
              Claude Haiku 4.5
-OpenAI:      GPT-5.5 Instant, GPT-5.3 Chat API (no-thinking)
+OpenAI:      GPT-5.6 Luna / Terra en usos chat simples (sin razonamiento),
+             GPT-5.5 Instant, GPT-5.3 Chat API (no-thinking)
              GPT-4.1, GPT-4o y versiones anteriores
 Google:      Gemini 3.5 Flash / 3.1 Pro (sin thinking activo)
              Gemini CLI (sin thinking)
 xAI:         Grok 4.2 (sin thinking), Grok Expert
-Meta:        Llama 3.x, Llama 4.x (todos)
+Meta:        Llama 3.x, Llama 4.x, Muse Spark 1.1 (jul 2026)
 Mistral:     Mistral Large, Le Chat, Mixtral (todos)
 Perplexity:  Modelos de Perplexity (no son razonadores nativos)
 ```

@@ -11,6 +11,12 @@ from pathlib import Path
 PENDIENTES = "## Pendientes"
 CONSOLIDADAS = "## Consolidadas"
 ENTRY_HEADING = re.compile(r"^### .+", re.MULTILINE)
+HTML_COMMENT = re.compile(r"<!--.*?-->", re.DOTALL)
+
+
+def _strip_comments(text: str) -> str:
+    """Remove HTML comments so template examples are not parsed as entries."""
+    return HTML_COMMENT.sub("", text)
 
 
 def _read(path: Path) -> str:
@@ -49,6 +55,7 @@ def _split_learnings(content: str) -> tuple[str, str, str]:
 
 def _extract_entries(section_body: str) -> list[tuple[str, str]]:
     entries: list[tuple[str, str]] = []
+    section_body = _strip_comments(section_body)
     if not section_body.strip():
         return entries
 
@@ -75,31 +82,20 @@ def _merge_section(
     target_body: str,
     source_body: str,
 ) -> tuple[str, list[str]]:
-    target_entries = _extract_entries(target_body)
-    source_entries = _extract_entries(source_body)
-    headings = {h for h, _ in target_entries}
+    """Append source entries missing in target, preserving target body as-is."""
+    headings = {h for h, _ in _extract_entries(target_body)}
     added: list[str] = []
+    merged = target_body
 
-    for heading, body in source_entries:
+    for heading, body in _extract_entries(source_body):
         if heading in headings:
             continue
         block = heading
         if body:
             block += "\n" + body
-        target_entries.append((heading, body))
+        merged = merged.rstrip() + "\n\n" + block + "\n"
         headings.add(heading)
         added.append(heading)
-
-    if not target_entries:
-        merged = target_body
-    else:
-        parts: list[str] = []
-        for heading, body in target_entries:
-            parts.append(heading)
-            if body:
-                parts.append(body)
-            parts.append("")
-        merged = "\n".join(parts).rstrip() + "\n"
 
     return merged, added
 
@@ -136,6 +132,20 @@ def merge_learnings_file(
         _write(target, merged, dry_run)
 
     return added_p + added_c
+
+
+def list_pending(skills_dir: Path) -> dict[str, list[str]]:
+    """Return real pending entries (comments stripped) per skill."""
+    result: dict[str, list[str]] = {}
+    for skill_dir in sorted(skills_dir.iterdir()):
+        learnings = skill_dir / "LEARNINGS.md"
+        if not skill_dir.is_dir() or not learnings.is_file():
+            continue
+        _, pendientes, _ = _split_learnings(_read(learnings))
+        entries = [h for h, _ in _extract_entries(pendientes)]
+        if entries:
+            result[skill_dir.name] = entries
+    return result
 
 
 def merge_harness_failures(
@@ -236,6 +246,9 @@ def main() -> int:
     p_hf.add_argument("--source", type=Path, required=True)
     p_hf.add_argument("--dry-run", action="store_true")
 
+    p_pending = sub.add_parser("pending", help="List real pending entries per skill")
+    p_pending.add_argument("--skills", type=Path, required=True)
+
     args = parser.parse_args()
 
     if args.cmd == "merge-file":
@@ -256,6 +269,17 @@ def main() -> int:
         added = merge_harness_failures(args.target, args.source, args.dry_run)
         if args.dry_run:
             print(f"dry-run: añadiría {len(added)} entrada(s)")
+        return 0
+
+    if args.cmd == "pending":
+        pending = list_pending(args.skills)
+        if not pending:
+            print("Sin entradas pendientes reales.")
+            return 0
+        for skill, entries in pending.items():
+            print(f"{skill}: {len(entries)}")
+            for h in entries:
+                print(f"  {h}")
         return 0
 
     return 1

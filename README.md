@@ -193,9 +193,10 @@ En cada push/PR que toque `skills/` o `templates/`:
 | `skill-integrity` | Frontmatter, enlaces, ≤500 líneas |
 | `harness-templates` | Plantillas + AGENTS |
 | `harness-readiness` | Score ≥16/20 |
-| `red-scenarios` | 19 escenarios RED estructurados |
+| `red-scenarios` | 21 escenarios RED estructurados |
 | `release-red` | Release log vigente (≤90 días) |
 | `meta-harness` | Artefactos de madurez ~100% |
+| `learnings-loop` | Merge L3 + LEARNINGS por skill |
 
 Ver [`docs/harness-ci.md`](docs/harness-ci.md).
 
@@ -213,8 +214,11 @@ Ver [`docs/harness-ci.md`](docs/harness-ci.md).
 | [docs/suite-code-map.md](docs/suite-code-map.md) | Dónde editar qué en este repo |
 | [docs/harness-release.md](docs/harness-release.md) | Cierre de oleadas (Modo 6) |
 | [docs/harness-quarterly-2026-06.md](docs/harness-quarterly-2026-06.md) | Informe Modo 7 trimestral |
-| [docs/harness-decisions.md](docs/harness-decisions.md) | ADRs del harness (H001–H017) |
+| [docs/harness-decisions.md](docs/harness-decisions.md) | ADRs del harness (H001–H019) |
+| [docs/harness-meta-checklist.md](docs/harness-meta-checklist.md) | Checklist de madurez meta-harness |
 | [docs/releases/harness-v3.4.md](docs/releases/harness-v3.4.md) | Release actual |
+
+**Históricos:** reportes de evolución ([2026-06-11](docs/evolution-report-2026-06-11.md), [2026-06-12](docs/evolution-report-2026-06-12.md), [2026-06-20](docs/evolution-report-2026-06-20.md)) y estudios puntuales ([WYSIWYG feasibility](docs/wysiwyg-editor-feasibility-2026-06-20.md)).
 
 ---
 

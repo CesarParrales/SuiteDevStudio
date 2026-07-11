@@ -26,7 +26,7 @@ Comandos antes de cerrar cambios en `skills/` o CI:
 bash scripts/harness-test.sh
 ```
 
-Última verificación registrada: 2026-07-10 · oleada 21 · loop L3 universal
+Última verificación registrada: 2026-07-10 · oleada 22 · robustez loop L3 + frescura
 
 ## Harness del proyecto
 
@@ -37,6 +37,13 @@ bash scripts/harness-test.sh
 | Workflow cliente | `templates/github/harness-validate-project.yml` |
 
 ## Log de sesión (IN-3)
+
+### 2026-07-10 · Oleada 22 — robustez loop L3 + frescura de datos
+- Skills activas: skill-evolution, testing-skills-with-subagents, supply-chain-security, prompt-engineer
+- Gates: `harness-test.sh` → exit 0; tests learnings-merge 4/4; job CI `learnings-loop`
+- SE-RED-01 ejecutado real: RED A (sin harness) → GREEN B (con regla); contra-regla añadida a la .mdc
+- Frescura: incidents-current (Mastra jun 2026) + reasoning-models (GPT-5.6, Grok 4.5, Fable 5)
+- LEARNINGS.md 38/38 skills; subcomando `pending` sin falsos positivos
 
 ### 2026-07-10 · Oleada 21 — loop L3 universal (editor → canónico)
 - Skills activas: skill-evolution, harness-template

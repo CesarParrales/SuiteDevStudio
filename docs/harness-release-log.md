@@ -1,6 +1,20 @@
 # Log RED/GREEN por release — Suite Dev Studio
 
 Append-only. Una entrada mínima por oleada o versión harness.
+**Convención de orden:** la entrada más reciente va **arriba** (tras esta cabecera).
+`validate-release-red.sh` evalúa el primer bloque `### YYYY-MM-DD` del archivo.
+
+---
+
+### 2026-07-10 · v3.4 oleada 22 — robustez loop L3 + frescura
+
+- **Escenario:** SE-RED-01 (LEARNINGS solo en repo canónico)
+- **Skill:** skill-evolution
+- **RED:** subagente fresco sin harness eligió **A** — *"respetar la instrucción y esperar el repo canónico"*
+- **GREEN:** subagente con regla `suite-learnings-capture` eligió **B** — *"escribir ahora en global; collect-learnings.sh lleva al canónico"*
+- **Ejecutor:** subagentes RED+GREEN oleada 22 (ejecución real, readonly)
+- **Hallazgo:** el RED racionalizó "LEARNINGS = tocar la skill"; se añadió regla explícita en `suite-learnings-capture.mdc`
+- **Artefactos:** test-learnings-merge.py, subcomando `pending`, job CI `learnings-loop`, LEARNINGS.md universal (38/38)
 
 ---
 

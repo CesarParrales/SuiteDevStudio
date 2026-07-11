@@ -52,13 +52,13 @@ bash scripts/collect-learnings.sh --source-project /ruta/al/proyecto
    Fuentes: `~/.cursor/skills/` (global), `.cursor/skills/` del proyecto si se indica.
    No requiere proyecto piloto — captura cualquier tarea donde se usó una skill.
 
-1. **Recolectar pendientes** en la suite canónica:
+1. **Recolectar pendientes** en la suite canónica (ignora plantillas comentadas):
 
 ```bash
-grep -rln "### " skills/*/LEARNINGS.md
+python3 scripts/learnings_merge.py pending --skills skills
 ```
 
-   Lee la sección `## Pendientes` de cada archivo con resultados.
+   Lee la sección `## Pendientes` solo de las skills listadas (entradas reales).
 
 2. **Clasificar** cada entrada:
    - `gap` → falta contenido: añadir sección/dato al SKILL.md o reference correspondiente

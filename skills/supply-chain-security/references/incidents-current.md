@@ -1,7 +1,7 @@
 # Incidentes Activos de Supply Chain
 
 ```
-last_updated: 2026-05
+last_updated: 2026-07-10
 revisar_cada: 30 días
 ```
 
@@ -16,10 +16,56 @@ revisar_cada: 30 días
 
 | Fecha | Incidente | Ecosistema | Severidad |
 |---|---|---|---|
+| Jun 17, 2026 | Mastra AI — scope @mastra completo (142-145 paquetes) vía easy-day-js | npm | CRÍTICA |
 | May 22-23, 2026 | laravel-lang/* comprometidos (git tag hijacking) | Composer | CRÍTICA |
 | May 2026 | devdojo/wave, devdojo/genesis + 6 paquetes (cross-ecosystem) | Composer+npm | ALTA |
+| Abr 30, 2026 | intercom/intercom-php — releases maliciosos (cuenta GitHub robada) | Composer | ALTA |
+| Abr 2026 | Axios comprometido (Sapphire Sleet, mismo actor que Mastra) | npm | ALTA |
 | Abr 2026 | CVE-2026-40261 (CVSS 8.8) — Composer Perforce driver RCE | Composer | CRÍTICA |
 | Sep-Nov 2025 | Gusano Shai-Hulud — 500+ paquetes, variante con dead man's switch | npm | CRÍTICA |
+
+---
+
+## Mastra AI — Scope npm completo comprometido (Jun 2026)
+
+```
+ATAQUE (17 junio 2026, ventana de 88 minutos, actor estatal Sapphire Sleet / DPRK):
+  → Cuenta npm de ex-contributor (ehindero) con publish access nunca revocado,
+    comprometida vía LinkedIn + link malicioso (credential harvesting)
+  → 142-145 paquetes @mastra/* y mastra republicados con dependencia nueva:
+    easy-day-js (typosquat de dayjs, 50M descargas/semana)
+  → Staging en 2 fases: easy-day-js@1.11.21 limpio (16 jun), @1.11.22 con
+    postinstall malicioso (17 jun 01:01 UTC) — el rango ^1.11.21 resuelve al malicioso
+  → Payload: deshabilita TLS, descarga RAT desde 23.254.164.92, persistencia OS,
+    roba credenciales + crypto wallets
+
+CUALQUIER INSTALACIÓN DE @mastra/* DESDE 2026-06-17 01:20 UTC HASTA LA
+REMEDIACIÓN (mismo día) DEBE CONSIDERARSE COMPROMETIDA.
+```
+
+### Verificación inmediata
+
+```bash
+# ¿El proyecto usa mastra o resolvió easy-day-js?
+grep -rE '"(easy-day-js|@mastra/|mastra)"' package.json package-lock.json pnpm-lock.yaml 2>/dev/null
+
+# IOCs en el host
+ls -la "${TMPDIR:-/tmp}/.pkg_history" "${TMPDIR:-/tmp}/.pkg_logs" 2>/dev/null && echo "PAYLOAD EJECUTADO"
+# Windows: servicio "scdev"
+
+# Mitigación preventiva en CI
+npm ci --ignore-scripts   # bloquea postinstall hooks automáticos
+```
+
+### Remediación
+
+```bash
+# 1. Actualizar a versiones forward-rolled limpias (Mastra PR #18056) y
+#    eliminar easy-day-js del lockfile
+# 2. Si hay IOCs: rotación total de credenciales (npm tokens, cloud, SSH, wallets)
+# 3. Lección estructural: auditar y revocar publish access de cuentas inactivas
+#    en scopes npm propios (npm access ls-collaborators)
+```
 
 ---
 
@@ -202,7 +248,14 @@ PACKAGIST / COMPOSER 2.10:
   → Versiones estables inmutables: git tag rewriting = rechazado
     (el vector de laravel-lang ya no funciona con Composer 2.10 + Packagist)
   → Aikido Security integrado para detección de malware en tiempo real
+  → En camino (jul 2026): dependency policies unificadas, cooldown de
+    versiones nuevas (minimum release age), staged release con FIDO2 MFA
+    para paquetes de alto uso
 
-NPM PROVENANCE:
-  → Adopción creciente pero no universal — no asumir que protege todo
+NPM:
+  → Staged release flow con MFA disponible desde 22 may 2026 — activarlo
+    en paquetes propios
+  → Provenance: adopción creciente pero no universal — no asumir que protege todo
+  → Lección Mastra: cuentas de ex-contributors con publish access son el
+    vector dominante 2026 — auditar colaboradores de scopes propios
 ```

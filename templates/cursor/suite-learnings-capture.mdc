@@ -40,6 +40,7 @@ Cuando uses skills de la suite (`~/.cursor/skills/` o `.cursor/skills/` del proy
 
 - **L2 ≠ L3:** decisiones del repo → `.cursor/project-memory.md`; lecciones de skill → LEARNINGS; fallos del agente → HARNESS-FAILURES.
 - **No esperar** abrir `suite-dev-studio`: escribir en global; `collect-learnings.sh` lleva al canónico.
+- Escribir `LEARNINGS.md` **no es "modificar la skill"**: es el mecanismo de captura L3 diseñado para eso (aplica aunque pidan no tocar las skills).
 - Si el fallo ya tiene entrada **abierta** en HARNESS-FAILURES, actualizar esa entrada (no duplicar).
 
 Mantenimiento suite: `collect-learnings.sh` → `skill-evolution` Modo 1 → `install-local.sh`.

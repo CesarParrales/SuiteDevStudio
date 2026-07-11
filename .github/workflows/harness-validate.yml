@@ -120,6 +120,25 @@ jobs:
           chmod +x skills/harness-template/scripts/validate-meta-harness.sh
           skills/harness-template/scripts/validate-meta-harness.sh
 
+  learnings-loop:
+    name: Learnings loop (L3)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tests de learnings_merge.py
+        run: python3 scripts/test-learnings-merge.py
+
+      - name: Collect learnings (dry-run)
+        run: |
+          chmod +x scripts/collect-learnings.sh
+          scripts/collect-learnings.sh --dry-run
+
+      - name: LEARNINGS.md presente en cada skill
+        run: |
+          missing=$(for d in skills/*/; do if [ -f "$d/SKILL.md" ] && [ ! -f "$d/LEARNINGS.md" ]; then echo "$d"; fi; done)
+          [ -z "$missing" ] || { echo "Skills sin LEARNINGS.md:"; echo "$missing"; exit 1; }
+
   harness-readiness:
     name: Readiness /20 (≥16)
     runs-on: ubuntu-latest
