@@ -85,15 +85,17 @@ Mantener las últimas 5–10 entradas; archivar las antiguas en `docs/harness-lo
 - Skills **globales**: `~/.cursor/skills/` (si no hay copia local)
 - Suite Dev Studio: usar `laravel-backend`, `testing-strategy`, etc. junto con skills propias del proyecto; **no sustituir** reglas en `.cursor/rules/`
 
-## Recursos UX/UI gratuitos (suite)
+## Recursos UX/UI (suite)
 
 Cuando la tarea sea diseño, auditoría UI o onboarding visual:
 
 | Uso | Archivo en `.cursor/skills/` |
 |-----|------------------------------|
-| Catálogo free (literal + inspiración) | `ui-web-modern/references/learning-sources.md` |
+| Catálogo (literal + inspiración + premium curado) | `ui-web-modern/references/learning-sources.md` |
 | Checklist principios UX en auditoría | `ui-audit/references/ux-principles-free.md` |
 | Tendencias con caducidad (radar, no spec) | `ui-web-modern/references/trends-watch.md` |
 
 Regla: **tendencias ≠ verdades** — revisar cada 90 días. Prototipos IA → `ui-audit` antes de merge.
+HorizonX Explore: mood board por defecto; Figma/código solo con licencia.
+Animos (`animos.app`): inspiración de carruseles/showcase + export MP4/WebM marketing; no código producto.
 Reporte suite: `docs/evolution-report-2026-06-12.md` (en repo suite-dev-studio).

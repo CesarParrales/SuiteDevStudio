@@ -51,8 +51,9 @@ productos de referencia) vive en `references/trends-watch.md`.
 1. **Definir contexto**: tipo de producto (SaaS/landing/dashboard), audiencia
    y sensación buscada. Si falta, aplicar Defaults.
 2. **Investigar referentes**: flujo de `references/inspiration.md`; recursos
-   gratuitos (principios, 21st.dev, hubs ES) en `references/learning-sources.md`;
-   tendencias y Tier 1 en `references/trends-watch.md` (verificar fecha).
+   gratuitos y premium curados (principios, 21st.dev, HorizonX Explore, Animos,
+   hubs ES) en `references/learning-sources.md`; tendencias y Tier 1 en
+   `references/trends-watch.md` (verificar fecha).
 3. **Decidir fundaciones visuales**: tipografía (`references/typography.md`),
    paleta (`references/color.md`), spacing/grid/layout (`references/layout.md`).
 4. **Definir motion**: micro-interacciones y tokens de animación

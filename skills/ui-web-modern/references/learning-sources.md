@@ -1,7 +1,7 @@
 # Learning Sources — recursos gratuitos (uso literal e inspiración)
 
 ```
-last_updated: 2026-06
+last_updated: 2026-08
 revisar_cada: 90 días
 ```
 
@@ -23,6 +23,8 @@ USO LITERAL (copiar/adaptar con gates):
 
 USO INSPIRACIÓN (extraer principio, no copiar pixel):
 → Prompts de heroes/landings (MotionSites free tier)
+→ Catálogos premium curados (HorizonX Explore — mood board; código solo con licencia)
+→ Templates de motion / carruseles showcase (Animos — ritmo y loop; no código producto)
 → Artículos de tendencias (Acceseo, Awwwards, Dribbble)
 → Generadores IA con créditos free (UX Pilot — validar con ui-audit después)
 
@@ -172,6 +174,84 @@ Radar editorial — desglosar cada punto en moda vs principio:
 Detalle filtrado → trends-watch.md § Radar editorial 2026
 ```
 
+**HorizonX** — [horizonx.so/explore](https://horizonx.so/explore) · sitio [horizonx.so](https://horizonx.so)
+
+```
+QUÉ ES (jul 2026):
+  Biblioteca premium in-house de UI kits, landings, componentes, assets Figma
+  y demos Code / WebGL / GSAP — orientada a “vibecoding” y ship rápido.
+  Explore: ~88+ piezas curadas (Featured / Most viewed / Newest).
+  Categorías útiles: UI/UX · Code · Vibe coding · Assets · Branding.
+
+TIER:
+  Explorar catálogo → sin paywall de lectura (mood board).
+  Descargar Figma/código → suscripción ($24.99–$99.99/mo Starter/Pro/Max)
+    o compra unitaria; licencia comercial incluida en plan.
+  NO es free-tier de componentes como 21st.dev community.
+
+USO INSPIRACIÓN (default de la suite — sin licencia):
+  → Mood board de heroes cinematográficos, product storytelling, dark SaaS
+  → Extraer principios: jerarquía tipográfica editorial, ritmo de scroll,
+    contraste dark, mockups de producto, pricing sections
+  → Etiqueta en brief: [INSPIRACIÓN · HorizonX Explore · revisar 90d]
+
+USO LITERAL (solo si el equipo tiene licencia activa):
+  → Adaptar tokens del design system; una familia visual por proyecto
+  → Gate obligatorio: ui-audit + performance-web (WebGL/GSAP/3D pesan)
+  → No pegar glow/purple/glass pesado en app producto densa sin medir
+
+NO USO / CUIDADOS:
+  → No tratar piezas como productos en producción (muchas son conceptos)
+  → No default de motion cinematográfico en dashboards/admin
+  → Evitar sesgos visuales cluster (purple glow, glass multi-layer) —
+    ver reglas de diseño del agente / color.md
+  → No inventar “gratis con código” — si no hay licencia, solo inspiración
+
+CUÁNDO ELEGIR HORIZONX vs 21st.dev vs MotionSites vs Animos:
+  HorizonX Explore  → mood board premium landings / brand / motion
+  21st.dev          → componentes React community (literal + tokens)
+  MotionSites       → prompts de heroes (free "Copy")
+  Animos            → patrones de carrusel/showcase + export MP4/WebM marketing
+```
+
+**Animos** — [animos.app](https://animos.app)
+
+```
+QUÉ ES (ago 2026):
+  Editor no-code en el navegador: ~25 templates de motion looping para
+  showcase de diseños (UI mockups, apps, product shots). Workflow:
+  pick template → drop images/videos → tweak → export MP4/WebM.
+  Procesamiento local en el cliente (assets no suben a su nube según FAQ).
+  Ratios: 16:9, 4:3, 1:1, 4:5, 9:16. Export hasta 8K (HD+ suele ser Pro).
+
+TIER (verificar en sitio):
+  Templates + export 720p → free (sin cuenta, según FAQ del producto).
+  HD–8K → Pro (suscripción o tokens según región).
+  NO es librería de carrusel React (no Embla/Swiper/código drop-in).
+
+USO INSPIRACIÓN (default):
+  → Referencia de PATRONES de carrusel / slider / card stack / coverflow-like
+  → Extraer: ritmo de loop, profundidad 3D/tilt, spacing entre slides,
+    sombra, duración del ciclo, sensación “seamless”
+  → Etiqueta: [INSPIRACIÓN · Animos · carrusel/showcase · revisar 90d]
+
+USO EXPORT (marketing / launch / portafolio — permitido):
+  → Generar clips cortos looping para redes, release notes, landing demos
+  → WebM transparente cuando el stack lo permita (landing, no admin denso)
+  → Gate performance-web si el clip va embebido en producto web
+
+NO USO:
+  → No sustituir implementación de carrusel en producto (usar Embla/Swiper
+    o patrón del design system + motion.md + a11y)
+  → No tomar estética 3D pesada como default en dashboards/SaaS densos
+  → No asumir licencia de footage de terceros dentro del template
+
+CARRUSELES EN CÓDIGO (si hay que implementar, no Animos):
+  → Embla Carousel / Swiper / Radix según stack del proyecto
+  → Gates: teclado, focus, prefers-reduced-motion, touch, aria-roledescription
+  → Inspiración de ritmo → Animos; implementación → código + ui-audit
+```
+
 ---
 
 ## Mapa fuente → skill → modo de uso
@@ -182,6 +262,8 @@ Detalle filtrado → trends-watch.md § Radar editorial 2026
 | FormiUX índice | Sí | ui-web-modern | Literal (herramientas) |
 | KIT UX UI | Sí | team-onboarding | Literal (plantillas) |
 | 21st.dev community | Sí | atomic-design, react-patterns | Literal + adaptar tokens |
+| HorizonX Explore | Browse sí / assets de pago | ui-web-modern, ui-audit | Inspiración; literal solo con licencia |
+| Animos | Templates + 720p free; HD Pro | ui-web-modern, motion | Inspiración carrusel + export clips |
 | MotionSites Copy | Parcial | ui-web-modern | Solo inspiración |
 | UX Pilot | Freemium | ux-architecture | Prototipo → auditar |
 | Acceseo 2026 | Sí (artículo) | trends-watch | Solo radar |
@@ -194,8 +276,12 @@ Detalle filtrado → trends-watch.md § Radar editorial 2026
 1. Contexto     → ux-discovery + project-memory
 2. Principios   → uxuiprinciples (3+ checks gratuitos)
 3. Referentes   → Mobbin/Pageflows (inspiration.md) + productos Tier 1 (trends-watch)
+                  + HorizonX Explore (mood board landings/brand; no código sin licencia)
+                  + Animos (patrones carrusel/showcase + export marketing)
 4. Prototipo    → wireframes ASCII/Mermaid O UX Pilot free (opcional)
 5. Componentes  → 21st.dev / shadcn → atomic-design
+                  (HorizonX Code/Figma solo con licencia + adaptar tokens)
+                  Carrusel en producto → librería del stack (no Animos)
 6. Validación   → ui-audit + performance-web (GTmetrix/Squosh si aplica)
 7. Cierre       → LEARNINGS.md si alguna URL falló o el tier cambió
 ```

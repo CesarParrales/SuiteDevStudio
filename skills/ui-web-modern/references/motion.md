@@ -279,6 +279,33 @@ const itemVariants = {
 
 ---
 
+## Carruseles y showcases (inspiración vs implementación)
+
+```
+INSPIRACIÓN DE MOTION / MARKETING:
+  animos.app → templates looping (card stack, slider, tilt 3D, cascada)
+  Extraer: duración del ciclo, easing percibido, profundidad, gap, sombra,
+           loop sin corte visible
+  Export: MP4/WebM para launch, redes, portafolio (gate performance-web si embed)
+  Etiqueta: [INSPIRACIÓN · Animos · revisar 90d]
+  Detalle de tiers y límites → learning-sources.md § Animos
+
+IMPLEMENTACIÓN EN PRODUCTO (código):
+  → Embla / Swiper / patrón del design system — NUNCA Animos como dependencia
+  → Gates obligatorios:
+     - teclado (flechas), focus visible, dots/controles etiquetados
+     - aria-roledescription="carrusel" / labels por slide
+     - prefers-reduced-motion → transición instantánea o fade corto
+     - touch / swipe; no autoplay agresivo (pausa al hover/focus)
+  → Autoplay por defecto OFF en SaaS/admin; ON solo en marketing con pause
+
+REGLA:
+  Animos = cómo se SIENTE el carrusel en un showcase.
+  Código + a11y = cómo FUNCIONA el carrusel en el producto.
+```
+
+---
+
 ## Cuándo NO Animar
 
 ```

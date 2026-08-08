@@ -1,7 +1,7 @@
 # Trends Watch — diseño web
 
 ```
-last_updated: 2026-06
+last_updated: 2026-08
 revisar_cada: 90 días
 ```
 
@@ -132,6 +132,18 @@ DIRECCIÓN LARGO PLAZO (no default web clásica):
 
 Prompt libraries con estética moda (MotionSites free "Copy"):
 → Etiqueta [INSPIRACIÓN · revisar 90d] — ver learning-sources.md
+
+HorizonX Explore (horizonx.so/explore) — catálogo premium curado:
+→ Mood board de landings cinematográficas, product storytelling, dark SaaS
+→ Browse = inspiración; Figma/código = solo con licencia
+→ Gate performance-web si se copia motion WebGL/GSAP
+→ Etiqueta [INSPIRACIÓN · HorizonX · revisar 90d]
+
+Animos (animos.app) — templates motion / carrusel showcase:
+→ Referencia de ritmo, loop seamless, card stacks, tilts 3D
+→ Export MP4/WebM para marketing/launch (720p free; HD Pro)
+→ NO implementar carrusel de producto con Animos
+→ Etiqueta [INSPIRACIÓN · Animos · carrusel · revisar 90d]
 ```
 
 ---
@@ -142,6 +154,10 @@ Prompt libraries con estética moda (MotionSites free "Copy"):
 COMMUNITY (gratis, calidad heterogénea):
   21st.dev/community/components → heroes, pricing, tables, sidebars
   Reglas: una familia visual · ui-audit antes de merge
+
+PREMIUM CURADO (browse libre / download de pago):
+  horizonx.so/explore → UI/UX, Code, Vibe coding, Assets
+  Reglas: inspiración por defecto; literal solo con licencia + ui-audit
 
 ESTABLES EN ECOSISTEMA (preferir si el repo ya los usa):
   shadcn/ui, Tremor, Radix — ver sección Admin arriba

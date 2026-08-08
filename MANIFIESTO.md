@@ -129,9 +129,11 @@ Cada skill cumple:
     - supply-chain-security/references/incidents-current.md (last_updated: 2026-05,
       revisar cada 30 días): laravel-lang 22-23 may 2026, Shai-Hulud, CVE-2026-40261
     - prompt-engineer/data/routing-suites-models.md (modelos razonadores)
-    - ui-web-modern/references/trends-watch.md (last_updated: 2026-06, cada 90 días)
-    - ui-web-modern/references/learning-sources.md (last_updated: 2026-06, cada 90 días):
-      catálogo recursos UX/UI gratuitos (literal vs inspiración); tendencias ≠ verdades
+    - ui-web-modern/references/trends-watch.md (last_updated: 2026-08, cada 90 días)
+    - ui-web-modern/references/learning-sources.md (last_updated: 2026-08, cada 90 días):
+      catálogo recursos UX/UI (literal vs inspiración); HorizonX Explore; Animos
+      (carrusel/showcase + export clips); tendencias ≠ verdades
     - ui-audit/references/ux-principles-free.md (last_updated: 2026-06, cada 90 días):
       checklist auditoría subset gratuito uxuiprinciples.com
-  Reporte: docs/evolution-report-2026-06-12.md
+  Reportes: docs/evolution-report-2026-06-12.md · docs/evolution-report-2026-07-19.md
+             · docs/evolution-report-2026-08-08.md

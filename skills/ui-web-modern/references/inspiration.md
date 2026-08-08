@@ -33,6 +33,16 @@ PRINCIPIOS CON EVIDENCIA (subset gratuito):
 
 COMPONENTES CÓDIGO (community free):
   21st.dev/community/components → adaptar tokens; gate ui-audit
+
+MOOD BOARD PREMIUM (browse gratis / assets de pago):
+  horizonx.so/explore → landings, brand, motion, dark SaaS
+  Ver learning-sources.md § HorizonX — inspiración por defecto;
+  código/Figma solo con licencia + performance-web
+
+CARRUSELES / SHOWCASE EN MOTION (inspiración + export clips):
+  animos.app → templates looping (card stack, sliders, tilts)
+  Extraer ritmo/loop/perspectiva; export MP4/WebM para marketing
+  NO es componente React — ver learning-sources.md § Animos
 ```
 
 ---
@@ -81,6 +91,13 @@ CURADAS POR CALIDAD (lo mejor para interfaces reales):
   UiGarage.net        → UI patterns con filtros precisos
 
 DISEÑO CONCEPTUAL (inspiración visual, cuidado con implementar directamente):
+  HorizonX Explore    → horizonx.so/explore — kits/landings/code in-house premium
+                        Útil para: heroes editoriales, product storytelling, dark SaaS,
+                        motion GSAP/WebGL como referencia de ritmo (no como default)
+                        No útil para: copiar assets sin licencia; dashboards densos
+  Animos              → animos.app — templates de motion para showcases/carruseles
+                        Útil para: ritmo de loop, card stacks, sliders 3D/tilt, export clips
+                        No útil para: implementar carrusel en código de producto
   Dribbble.com        → Alta calidad visual, baja aplicabilidad real
                         Útil para: paletas, estilos, tendencias
                         No útil para: copiar como solución de UX real
@@ -207,6 +224,8 @@ Proceso recomendado antes de diseñar:
    → Capturar 10-15 referencias de alta calidad
    → Principios gratuitos: learning-sources.md § Principios UX
    → Componentes literales (si hay stack React): 21st.dev o shadcn del proyecto
+   → Mood board landings/brand: HorizonX Explore (inspiración; licencia para assets)
+   → Carruseles/showcase motion: Animos (inspiración + export; no código)
 
 3. IDENTIFICAR PATRONES (15 min)
    → Qué tienen en común los mejores referentes
