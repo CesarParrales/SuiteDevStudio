@@ -72,6 +72,12 @@ Si la tarea implica crear o modificar **más de ~300 líneas o más de 5 archivo
 
 **Contra-regla contexto:** "lee todo el repo" o auditoría **no sustituyen** lectura dirigida (archivo + imports + tests).
 
+## Explorar y después fijar
+
+Improvisar en el chat sirve para un prototipo que se va a descartar. Ese código no entra a una rama de producto hasta que lo descubierto está en el spec de `harness-template/references/work-spec.md` (requisitos, diseño, tareas). Si el comportamiento cambia después, el spec se actualiza en el mismo cambio.
+
+Un fix localizado o un componente no abre spec. La escalera de código mínimo sigue aplicando en los dos modos.
+
 ## Checklist antes de generar
 
 - [ ] ¿Existen `CONTEXT.md` o `AGENTS.md`? Si sí, ¿se leyeron y aplicaron?
@@ -97,7 +103,7 @@ Si la tarea implica crear o modificar **más de ~300 líneas o más de 5 archivo
 |-------|-----|
 | `karpathy-guidelines` | Quirúrgico, checkpoints, escalación |
 | `testing-strategy` | Tests no negociables en lógica core |
-| `harness-template` | DoD y plantillas por topología |
+| `harness-template` | DoD, plantillas y spec antes de producción |
 | `comprobacion-produccion` | Gates pre/post merge |
 
 Origen de la escalera: evaluación [docs/evaluation-ponytail.md](../../../docs/evaluation-ponytail.md) (ideas adaptadas, no plugin externo).

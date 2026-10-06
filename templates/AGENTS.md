@@ -60,7 +60,8 @@ Enlaces:
 
 | Necesidad | Skill / artefacto |
 |-----------|-------------------|
-| Feature grande | `harness-template` + topología del stack |
+| Feature grande | `harness-template` + topología del stack; spec vivo en el mismo cambio |
+| Cierre de feature grande o bug crítico | Pasada que no edita (`work-spec.md`); subagente `.cursor/agents/verifier.md` si existe |
 | Cierre de tarea | `comprobacion-produccion` |
 | Cambios quirúrgicos | `karpathy-guidelines` |
 | Código mínimo / menos deps | `vibe-coding-token-optimization` (escalera en `decision-ladder.md`) |

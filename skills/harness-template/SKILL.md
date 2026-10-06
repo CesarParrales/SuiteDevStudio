@@ -26,7 +26,7 @@ Plantillas que empaquetan **feedforward + feedback** para topologías recurrente
 4. **Leer la plantilla** en `templates/<id>.md`.
 5. **Activar skills** listadas en la plantilla (en orden).
 6. **Crear/actualizar** archivos L2 del repo (`project-memory.md`, `AGENTS.md` desde `suite-dev-studio/templates/AGENTS.md`) si faltan.
-7. **Ejecutar Definition of Done** de la plantilla al cerrar.
+7. **Ejecutar Definition of Done** de la plantilla al cerrar. En feature grande o bug crítico, la pasada de [work-spec.md](references/work-spec.md) que no edita va antes de declarar listo.
 
 **Contra-regla FF-3:** palabras del pedido ("SaaS", "dashboard") o del PM ("usemos Next") **no sustituyen** leer `package.json` / `composer.json` y `task-routing.md`.
 

@@ -41,6 +41,25 @@ El test que reproduce el defecto va antes del fix. «Intacto» necesita al menos
 
 Si el arreglo exige una capacidad nueva, el bug se queda en este spec y la capacidad va a un spec de feature. No mezclarlos.
 
+## Spec vivo
+
+El código del repo manda. El spec no regenera la implementación.
+
+Si el comportamiento acordado cambia, el spec se actualiza en el mismo cambio que el código. Un spec viejo no se deja para otro PR.
+
+Explorar (prototipo que se va a descartar) puede ir sin spec. Antes de que ese código entre a una rama de producto, lo descubierto pasa a este spec. El chat no cuenta como memoria.
+
+## Verificación que no edita
+
+Antes de declarar lista una feature grande o un bug crítico, una pasada distinta de la implementación:
+
+1. Releer el pedido y el spec. El diff no sustituye el requisito.
+2. Ejecutar los tests y el build que apliquen a ese diff.
+3. Decir qué pasó y qué falta (criterio sin test, spec desactualizado, comando en rojo).
+4. No corregir en esa pasada. Quien implementó aplica el informe después.
+
+Plantilla de subagente Cursor (solo lectura): `templates/cursor/agents/verifier.md`. En un proyecto: `install-local.sh --project <ruta> --init-verifier`. Si el archivo no está instalado, la pasada se hace igual con estos cuatro pasos.
+
 ## Tests de propiedades (opt-in)
 
 Solo cuando el criterio es una regla que debe cumplirse para muchos inputs (importes, permisos, transiciones de estado) y unos pocos ejemplos no cubren el espacio.

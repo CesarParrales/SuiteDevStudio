@@ -14,6 +14,7 @@
 #   ./install-local.sh --project /ruta --init-code-map   → copia templates/code-map.md → docs/code-map.md
 #   ./install-local.sh --project /ruta --init-architecture → copia templates/docs/architecture/ → docs/architecture/
 #   ./install-local.sh --project /ruta --init-minimal-rule → copia templates/cursor/minimal-code.mdc → .cursor/rules/
+#   ./install-local.sh --project /ruta --init-verifier → copia templates/cursor/agents/verifier.md → .cursor/agents/
 #   ./install-local.sh --init-learnings-rule → copia regla → .cursor/rules/ del proyecto
 #   ./install-local.sh --init-learnings-rule-global → regla en ~/.cursor/rules/ (captura errores repetidos)
 #   ./install-local.sh --project /ruta --bootstrap → todos los --init-* anteriores (requiere --project)
@@ -39,6 +40,7 @@ INIT_HARNESS_TEST=false
 INIT_CODE_MAP=false
 INIT_ARCHITECTURE=false
 INIT_MINIMAL_RULE=false
+INIT_VERIFIER=false
 INIT_LEARNINGS_RULE=false
 INIT_LEARNINGS_RULE_GLOBAL=false
 BOOTSTRAP_STRICT=false
@@ -96,6 +98,10 @@ while [[ $# -gt 0 ]]; do
       INIT_MINIMAL_RULE=true
       shift
       ;;
+    --init-verifier)
+      INIT_VERIFIER=true
+      shift
+      ;;
     --init-learnings-rule)
       INIT_LEARNINGS_RULE=true
       shift
@@ -127,7 +133,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ "$INIT_MEMORY" == true || "$INIT_AGENTS" == true || "$INIT_GITHUB" == true || "$INIT_HARNESS_TEST" == true || "$INIT_CODE_MAP" == true || "$INIT_ARCHITECTURE" == true || "$INIT_MINIMAL_RULE" == true || "$INIT_LEARNINGS_RULE" == true ]]; then
+if [[ "$INIT_MEMORY" == true || "$INIT_AGENTS" == true || "$INIT_GITHUB" == true || "$INIT_HARNESS_TEST" == true || "$INIT_CODE_MAP" == true || "$INIT_ARCHITECTURE" == true || "$INIT_MINIMAL_RULE" == true || "$INIT_LEARNINGS_RULE" == true || "$INIT_VERIFIER" == true ]]; then
   if [[ -z "$PROJECT_DIR" ]]; then
     echo "Error: flags --init-* y --bootstrap requieren --project /ruta" >&2
     exit 1
@@ -364,6 +370,24 @@ if [[ -n "$PROJECT_DIR" ]]; then
       fi
     else
       echo "Advertencia: no se encontró $RULE_TEMPLATE" >&2
+    fi
+  fi
+
+  if [[ "$INIT_VERIFIER" == true ]]; then
+    VERIFIER_TEMPLATE="$SCRIPT_DIR/templates/cursor/agents/verifier.md"
+    VERIFIER_DEST="$PROJECT_DIR/.cursor/agents/verifier.md"
+    if [[ -f "$VERIFIER_TEMPLATE" ]]; then
+      if [[ -f "$VERIFIER_DEST" ]]; then
+        echo ""
+        echo "→ verifier: ya existe ($VERIFIER_DEST), no se sobrescribe"
+      else
+        mkdir -p "$PROJECT_DIR/.cursor/agents"
+        cp "$VERIFIER_TEMPLATE" "$VERIFIER_DEST"
+        echo ""
+        echo "→ verifier: creado ($VERIFIER_DEST) — solo lectura, no corrige"
+      fi
+    else
+      echo "Advertencia: no se encontró $VERIFIER_TEMPLATE" >&2
     fi
   fi
 

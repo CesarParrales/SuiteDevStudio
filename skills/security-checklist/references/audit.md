@@ -12,8 +12,8 @@ para detalle de cada vulnerabilidad ver `owasp.md`.
 PASO 1 — Escanear el repo (automático)
   → npm audit --audit-level=high  /  composer audit
   → SAST (Semgrep) + escáner de secrets (gitleaks/trufflehog)
-  → Gate: si el audit de dependencias sale con exit != 0 → hallazgo
-    Critical/High automático, listar CVEs en el informe
+  → Listar CVEs. Exit != 0 no es Critical automático: veredicto en
+    la sección Veredictos (CLI fuera del runtime no bloquea)
 
 PASO 2 — Checklist por categoría OWASP (manual, ver abajo)
   → Recorrer cada categoría con el checklist manual
@@ -36,12 +36,12 @@ PASO 4 — Emitir el informe
 ```bash
 # Node
 npm audit --audit-level=high
-# Gate: exit code != 0 → BLOQUEAR y listar CVEs en el informe
+# Exit != 0 → listar CVEs. Veredicto aparte: CLI fuera del runtime no bloquea.
 
 # PHP
 composer audit
 composer audit --format=json | jq '.advisories'
-# Gate: exit code != 0 → BLOQUEAR y listar advisories en el informe
+# Exit != 0 → listar advisories. Veredicto aparte: CLI fuera del runtime no bloquea.
 ```
 
 ### Herramientas de Análisis Estático
@@ -173,7 +173,57 @@ Configuración (A05):
 
 ---
 
+## Veredictos, verificación y cobertura
+
+Adaptado de [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill) (MIT, revisión 2026-10). No se instala ese skill ni su flota de cazadores. Una pregunta puntual ("¿es seguro este endpoint?") usa estas reglas sin abrir un informe de seis fases.
+
+### Tres veredictos
+
+Antes de poner Critical/High/Medium/Low, cada candidato recibe un veredicto:
+
+| Veredicto | Cuándo | Severidad |
+|-----------|--------|-----------|
+| `confirmado` | Hay traza en el código (archivo:línea) y un resultado acotado: qué principal, qué recurso y qué pasa | Sí. Solo estos bloquean el deploy |
+| `necesita_validacion` | Falta un hecho concreto (¿el CVE llega al proceso que corre?, ¿el header se aplica en prod?) | No. Se escribe el hecho que falta |
+| `rechazado` | La hipótesis no se sostiene en el código | No |
+
+Un hueco de checklist sin fallo de frontera es nota de hardening, no hallazgo. Si la capa A ya impide el ataque, la ausencia de la capa B no es vulnerabilidad.
+
+Un CVE de `npm audit` o `composer audit` con exit distinto de 0 se lista siempre. Es `confirmado` solo si el paquete está en el runtime de la app y el fallo cruza una frontera. Un CVE solo del CLI (el proceso de desarrollo, no el que sirve tráfico) queda en `necesita_validacion` o en hardening. No bloquea el cierre por sí solo.
+
+No se ejecuta el código del objetivo contra producción, ni se instalan dependencias para "probar" el fallo. Si el hecho decisivo exige correr la app y no hay un entorno aislado, el veredicto es `necesita_validacion`.
+
+### Quién encuentra no confirma
+
+En una auditoría del repo (no en una pregunta de una pieza), una segunda pasada relee el pedido y el código citado e intenta tumbar cada `confirmado`. No edita y no aplica el arreglo. Si no puede repetir la traza, baja el veredicto a `necesita_validacion`.
+
+### Ledger corto
+
+Al cerrar, una tabla de superficies tocadas. Una pasada posterior no marca como cubierto lo que no está en la lista. Si el código de una fila cambió, esa fila se reabre.
+
+```markdown
+| Superficie | Qué se miró | Estado |
+|------------|-------------|--------|
+| Auth login | rate limit, mensajes | cubierto @ <commit> |
+| Uploads | MIME y tamaño | no mirado |
+```
+
+## Auditoría recurrente (no solo cuando alguien la pide)
+
+Una auditoría única caduca: entran dependencias nuevas, vence un certificado, aparece un CVE. Para proyectos en producción, dejar una pasada programada (CI con `schedule`, o la app de auditoría del estudio cuando exista):
+
+| Cadencia | Qué | Dónde |
+|----------|-----|-------|
+| Cada push a main | `npm audit` / `composer audit`, secret scan, SAST | CI (ver Paso 1) |
+| Semanal | dependencias + revisión pasiva de URL (TLS, cabeceras, exposición) | job programado / `dast-url-review.md` |
+| Mensual | incidentes de supply chain (`supply-chain-security/references/incidents-current.md`), caducidad de certificados | job programado |
+| Trimestral o tras cambio de infra | auditoría de servidor con acceso | `infra-server-audit.md` |
+
+Cada corrida es aditiva: usa la cobertura previa para apuntar a lo que cambió, no repite a ciegas.
+
 ## Paso 3 — Clasificación de Hallazgos
+
+La severidad de abajo aplica solo a veredicto `confirmado`.
 
 ```
 CRITICAL — Explotable ahora, impacto total
@@ -195,6 +245,9 @@ LOW — Defensa en profundidad, sin vector directo
   Ejemplos: versión de framework antigua sin CVE conocido aplicable,
             cookies sin atributos óptimos en rutas no sensibles
   Acción: backlog, agrupar en tarea de hardening
+
+Si no hay frontera cruzada, no uses estas etiquetas: va a hardening
+o a necesita_validacion.
 ```
 
 ---
@@ -210,20 +263,28 @@ LOW — Defensa en profundidad, sin vector directo
   composer audit (exit N), semgrep, gitleaks
 
 ## Resumen
-| Severidad | Cantidad |
+| Veredicto | Cantidad |
 |---|---|
-| Critical | n |
-| High | n |
-| Medium | n |
-| Low | n |
+| confirmado Critical | n |
+| confirmado High | n |
+| confirmado Medium / Low | n |
+| necesita_validacion | n |
+| rechazado | n |
+| hardening | n |
 
-Veredicto: <APTO PARA DEPLOY | BLOQUEADO (Critical/High abiertos)>
+Deploy: <APTO | BLOQUEADO>. Bloquean solo los confirmados Critical o High.
+
+## Cobertura
+| Superficie | Qué se miró | Estado |
+|---|---|---|
+| ... | ... | cubierto @ commit / no mirado |
 
 ## Hallazgos
 
-### [SEC-001] <título> — CRITICAL
+### [SEC-001] <título> — confirmado — CRITICAL
 - Categoría OWASP: A0X
 - Ubicación: <archivo:línea o endpoint>
+- Frontera: <principal, recurso, resultado>
 - Evidencia: <output del comando, snippet, CVE>
 - Impacto: ...
 - Remediación: ...

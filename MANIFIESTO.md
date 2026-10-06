@@ -74,6 +74,11 @@ Total: 38 skills (33 de dominio + 4 meta/proceso + 1 integración opt-in)
   docs/harness-quarterly-2026-06.md → Informe Modo 7 trimestral
   docs/evaluation-ponytail.md → Escalera código mínimo (ideas adaptadas, opt-in)
   docs/evaluation-kiro.md → Spec feature grande / bug crítico (work-spec.md); flujo corto intacto
+  docs/evaluation-vibe-2026.md → Spec vivo, explorar y fijar, verificador que no edita
+  docs/evaluation-cloudflare-security-audit.md → Veredictos de auditoría en security-checklist; skill Cloudflare no instalado
+  security-checklist: pentest-methodology / infra-server-audit / dast-url-review → hacking ético senior con puerta de autorización
+  docs/spec-audit-platform/ → Spec (requisitos/diseño/tareas) de la plataforma de auditoría y monitoreo (feature grande, pendiente de aprobar)
+  install-local.sh --init-verifier → .cursor/agents/verifier.md (solo lectura)
   install-local.sh --init-minimal-rule → Regla Cursor minimal-code (no alwaysApply)
   scripts/collect-learnings.sh → Harvest L3 global/proyecto → canónico (oleada 21)
   install-local.sh --init-learnings-rule → Regla opt-in captura LEARNINGS al cerrar tareas

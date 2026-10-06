@@ -20,7 +20,10 @@ Seguridad por capas para aplicaciones web modernas.
 **Auth segura — tokens, passwords, sesiones → `references/auth-secure.md`**
 **Secrets y variables de entorno → `references/secrets-env.md`**
 **Headers y CORS/CSP → `references/headers-cors.md`**
-**Auditoría completa — workflow e informe → `references/audit.md`**
+**Auditoría de código — workflow e informe → `references/audit.md`**
+**Hacking ético senior — autorización y metodología → `references/pentest-methodology.md`**
+**Auditoría de servidor con acceso SSH → `references/infra-server-audit.md`**
+**Revisión de URL en vivo (DAST) → `references/dast-url-review.md`**
 
 ---
 
@@ -39,22 +42,29 @@ Seguridad por capas para aplicaciones web modernas.
 ## Protocolo de ejecución
 
 0. **Memoria** — leer project-memory (tokens OAuth, gates `composer audit` / CI).
-1. **Determinar el modo**: ¿auditoría de app existente o implementación segura
-   de algo nuevo? Auditoría → leer `references/audit.md` y seguir su workflow.
-   Implementación → identificar la capa (auth, input, secrets, headers) y leer
-   la reference correspondiente.
+1. **Determinar el modo**:
+   - **Implementación segura** de algo nuevo → identificar la capa (auth, input,
+     secrets, headers) y leer la reference correspondiente.
+   - **Auditoría de código** (solo lectura del repo) → `references/audit.md`.
+   - **Prueba activa** (acceso a un servidor, o una URL para revisar en vivo) →
+     `references/pentest-methodology.md` PRIMERO. Sin autorización + alcance +
+     RoE por escrito, degradar a auditoría de código y marcar los hallazgos
+     dependientes de ejecución como `necesita_validacion`. Con autorización:
+     servidor → `references/infra-server-audit.md`; URL → `references/dast-url-review.md`.
 2. **Auditar dependencias (obligatorio en ambos modos)**: ejecutar
    `npm audit --audit-level=high` y/o `composer audit` según los manifests
-   presentes. **Gate: exit code != 0 → BLOQUEAR el cierre y listar los CVEs
-   en el informe** (tabla de CVEs de `references/audit.md`).
+   presentes. Listar cada CVE. El exit distinto de 0 no confirma solo: el
+   veredicto está en `references/audit.md` (CLI fuera del runtime no bloquea).
 3. **Modelar amenazas** con la sección "Modelo de Amenazas" de este archivo:
    activos, atacantes, vectores, impacto. 5 minutos, no un documento formal.
 4. **Recorrer el checklist por categoría** (abajo) sobre el código afectado.
    Para el detalle de cada vulnerabilidad → `references/owasp.md`; para
    passwords/tokens → `references/auth-secure.md`; para secrets →
    `references/secrets-env.md`; para CORS/CSP → `references/headers-cors.md`.
-5. **Clasificar hallazgos** como Critical/High/Medium/Low con los criterios de
-   `references/audit.md`. Gate: Critical/High abiertos = no apto para deploy.
+5. **Clasificar** con los tres veredictos de `references/audit.md`
+   (`confirmado`, `necesita_validacion`, `rechazado`). Severidad solo en
+   confirmados. En auditoría del repo, quien encontró el candidato no lo
+   confirma. Gate de deploy: confirmados Critical/High abiertos.
 6. **Emitir el informe** con la plantilla de `## Entregable` y verificar que
    los fixes aplicados pasan re-ejecutando los comandos del paso 2.
 7. **Validación y cierre** — ejecutar `## Validación`; registrar gaps en `LEARNINGS.md`.
@@ -207,8 +217,9 @@ bloqueante, p. ej. no hay acceso al código de producción):
 |------|---------|----------|
 | Dependencias npm | `npm audit --audit-level=high` | exit 0 (o CVEs documentados + plan) |
 | Dependencias PHP | `composer audit` | exit 0 (o CVEs documentados + plan) |
-| Severidad | informe | 0 Critical/High abiertos para deploy |
+| Severidad | informe | 0 confirmados Critical/High abiertos para deploy |
 | Checklist | categorías de este SKILL.md | ítems aplicables revisados |
+| Prueba activa | `pentest-methodology.md` | autorización + alcance + RoE archivados antes de escanear |
 
 ---
 
@@ -223,8 +234,8 @@ Informe de auditoría (plantilla completa con IDs en `references/audit.md`):
 - npm audit --audit-level=high → exit <N>
 - composer audit → exit <N>
 
-## Resumen: Critical <n> · High <n> · Medium <n> · Low <n>
-Veredicto: <APTO | BLOQUEADO>
+## Resumen: confirmados Critical <n> · High <n> · necesita_validacion <n>
+Deploy: <APTO | BLOQUEADO>
 
 ## Hallazgos
 ### [SEC-001] <título> — <severidad>
