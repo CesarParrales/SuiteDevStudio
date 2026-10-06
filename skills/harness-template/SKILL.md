@@ -21,11 +21,12 @@ Plantillas que empaquetan **feedforward + feedback** para topologías recurrente
 ## Protocolo
 
 1. **Clasificar tarea** → [references/task-routing.md](references/task-routing.md) (FF-3).
-2. **Identificar topología** (tabla abajo).
-3. **Leer la plantilla** en `templates/<id>.md`.
-4. **Activar skills** listadas en la plantilla (en orden).
-5. **Crear/actualizar** archivos L2 del repo (`project-memory.md`, `AGENTS.md` desde `suite-dev-studio/templates/AGENTS.md`) si faltan.
-6. **Ejecutar Definition of Done** de la plantilla al cerrar.
+2. **Si es feature grande o bug crítico**, escribir el spec de [references/work-spec.md](references/work-spec.md) antes de editar código. El resto de tareas no abre spec.
+3. **Identificar topología** (tabla abajo).
+4. **Leer la plantilla** en `templates/<id>.md`.
+5. **Activar skills** listadas en la plantilla (en orden).
+6. **Crear/actualizar** archivos L2 del repo (`project-memory.md`, `AGENTS.md` desde `suite-dev-studio/templates/AGENTS.md`) si faltan.
+7. **Ejecutar Definition of Done** de la plantilla al cerrar.
 
 **Contra-regla FF-3:** palabras del pedido ("SaaS", "dashboard") o del PM ("usemos Next") **no sustituyen** leer `package.json` / `composer.json` y `task-routing.md`.
 
@@ -50,6 +51,7 @@ Plantillas que empaquetan **feedforward + feedback** para topologías recurrente
 | Tema | Archivo |
 |------|---------|
 | Enrutamiento por tipo de tarea | [references/task-routing.md](references/task-routing.md) |
+| Spec feature grande / bug crítico | [references/work-spec.md](references/work-spec.md) |
 | Checklist madurez 20 puntos | [references/readiness-checklist.md](references/readiness-checklist.md) |
 | Score automatizado /20 | `scripts/harness-readiness.sh` (`--ci` ≥16) |
 | Gate proyecto cliente | `harness-test-project.sh`; `validate-agents.sh` + `validate-code-map.sh` + `validate-project-memory.sh` |

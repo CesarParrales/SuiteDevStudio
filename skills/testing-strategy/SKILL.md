@@ -60,6 +60,7 @@ Estrategia completa de testing para proyectos web y mobile.
 | Flujo crítico de negocio (login, checkout, onboarding) | E2E | `references/integration-e2e.md` |
 | Dependencia externa (API, BD, tiempo) que aislar | Unit + mock | `references/mocking.md` |
 | Feature nueva con criterios de negocio | Behaviour (AC → RED → GREEN) | `references/behaviour-harness.md` |
+| Invariante de muchos inputs (opt-in) | Propiedad, si el proyecto ya tiene librería | `references/behaviour-harness.md` § Propiedades |
 
 ---
 

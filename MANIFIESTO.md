@@ -73,6 +73,7 @@ Total: 38 skills (33 de dominio + 4 meta/proceso + 1 integración opt-in)
   skill-evolution Modo 7        → Cierre trimestral (quarterly-harness.md)
   docs/harness-quarterly-2026-06.md → Informe Modo 7 trimestral
   docs/evaluation-ponytail.md → Escalera código mínimo (ideas adaptadas, opt-in)
+  docs/evaluation-kiro.md → Spec feature grande / bug crítico (work-spec.md); flujo corto intacto
   install-local.sh --init-minimal-rule → Regla Cursor minimal-code (no alwaysApply)
   scripts/collect-learnings.sh → Harvest L3 global/proyecto → canónico (oleada 21)
   install-local.sh --init-learnings-rule → Regla opt-in captura LEARNINGS al cerrar tareas
@@ -137,3 +138,4 @@ Cada skill cumple:
       checklist auditoría subset gratuito uxuiprinciples.com
   Reportes: docs/evolution-report-2026-06-12.md · docs/evolution-report-2026-07-19.md
              · docs/evolution-report-2026-08-08.md
+  Spec de trabajo (Kiro, 2026-10): docs/evaluation-kiro.md — solo feature grande y bug crítico

@@ -6,8 +6,9 @@ Antes de actuar, **clasificar la tarea** y activar solo el bundle de skills y he
 
 | Tipo de tarea | Señales en el pedido | Skills prioritarias | Sensores al cerrar |
 |---------------|----------------------|---------------------|-------------------|
-| **Scaffold / feature grande** | "nuevo módulo", "crear feature", >5 archivos | `harness-template` → topología + bundle | DoD de la plantilla |
-| **Implementación acotada** | fix, un endpoint, un componente | Dominio (`laravel-backend`, `nextjs-fullstack`, …) + `karpathy-guidelines` | `comprobacion-produccion` §0 |
+| **Scaffold / feature grande** | "nuevo módulo", "crear feature", >5 archivos | `harness-template` → topología + bundle | Spec feature en [work-spec.md](work-spec.md), luego DoD de la plantilla |
+| **Bug crítico** | auth, dinero, estados, regresión de un fix previo, causa no obvia | Dominio + `karpathy-guidelines` + `testing-strategy` | Spec bug (actual / esperado / intacto) en [work-spec.md](work-spec.md) |
+| **Implementación acotada** | fix localizado, un endpoint, un componente | Dominio (`laravel-backend`, `nextjs-fullstack`, …) + `karpathy-guidelines` | `comprobacion-produccion` §0 |
 | **Tests** | "añadir tests", TDD, cobertura | `testing-strategy` + behaviour harness | `npm test` / `vendor/bin/pest` exit 0 |
 | **Revisión UI** | review UI, accesibilidad, PR frontend | `web-interface-guidelines` o `ui-audit` | Formato `archivo:línea` |
 | **Revisión pre-prod / release** | merge, deploy, go-live | `comprobacion-produccion` §1–2 | Tabla Hecho/Falta |
@@ -29,6 +30,8 @@ Antes de actuar, **clasificar la tarea** y activar solo el bundle de skills y he
 | Laravel + Inertia página | `templates/inertia-spa-page.md` |
 
 Si no hay plantilla: dominio + `karpathy-guidelines` + `comprobacion-produccion` §0.
+
+**Precedencia:** si el pedido coincide con bug crítico e implementación acotada, manda el spec de [work-spec.md](work-spec.md). Un fix localizado no abre spec.
 
 ## Detección automática de stack (antes de elegir skills)
 

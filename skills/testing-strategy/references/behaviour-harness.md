@@ -74,6 +74,12 @@ export const invalidQuantity = { productId: '1', quantity: 0 };
 
 Combinar: **AC explícitos** + **fixtures aprobados** + **mutation score** en lógica crítica (ver SKILL.md § Métricas).
 
+## Propiedades (opt-in)
+
+Cuando el criterio es una regla para muchos inputs (importes, permisos, transiciones) y los ejemplos no cubren el espacio, añadir un test de propiedades con la librería que el proyecto ya tenga. Si no hay librería, no instalar una solo por esto: escribir la propiedad y cubrir los bordes con ejemplos.
+
+Cuándo corresponde (feature grande o bug crítico) → `harness-template/references/work-spec.md`. El default de esta guía sigue siendo el test de ejemplo.
+
 ## Integración con harness templates
 
 Al usar `harness-template` (ej. `laravel-api-module`), el paso 1 del flujo es escribir AC + RED antes del scaffold.
