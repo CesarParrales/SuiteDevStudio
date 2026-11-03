@@ -13,4 +13,7 @@ Registro de lecciones de uso. `skill-evolution` consolida las pendientes en el S
 
 ## Consolidadas
 
-(ninguna aún)
+### 2026-10-21 · Fallos tardíos del código generado
+- **Tipo:** mejora
+- **Hallazgo:** N+1 en accessors, validación en el controlador y escrituras sin transacción pasan el merge y fallan después
+- **Acción:** → aplicado 2026-10-21 en `references/vibe-fallos.md`

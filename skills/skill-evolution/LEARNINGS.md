@@ -13,6 +13,16 @@ Registro de lecciones de uso. `skill-evolution` consolida las pendientes en el S
 
 ## Consolidadas
 
+### 2026-10-17 · Historia visual desde 10K websites
+- **Tipo:** mejora
+- **Hallazgo:** el repo de prompts cinemáticos aportaba storyboard y mobile compuesto que no estaban en la suite; el pipeline Higgsfield no aportaba
+- **Acción:** → aplicado 2026-10-17 en `ui-web-modern/references/scroll-story.md` y fila en `references/upstream-watch.md`
+
+### 2026-10-09 · Vigilancia de oficio visual
+- **Tipo:** mejora
+- **Hallazgo:** Emil Kowalski, taste-skill v2 e Impeccable aportan reglas que la suite no tenía, y las fuentes ya citadas no tenían fecha de revisión
+- **Acción:** → aplicado 2026-10-09 en `references/upstream-watch.md`, `ui-web-modern/references/motion-craft.md`, `ui-web-modern/references/design-read.md`, `ui-audit/references/ai-slop.md`
+
 ### 2026-07-10 · Captura errores repetidos (oleada 21+)
 - **Tipo:** mejora
 - **Hallazgo:** iteraciones múltiples sin registrar fallos; mismos errores en sesión

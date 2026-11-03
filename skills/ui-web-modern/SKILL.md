@@ -8,6 +8,7 @@ description: >
   tipografía para web, paletas de color modernas, sistemas de grid, animaciones
   sutiles o micro-interacciones. También cuando diga "quiero que se vea moderno",
   "cómo diseño una landing", "qué tipografías uso", "referencia de diseño SaaS",
+  "no se vea genérico", "landing con oficio", "historia en scroll", "style tile",
   o cualquier variante sobre la calidad visual de interfaces web.
 ---
 
@@ -27,6 +28,9 @@ productos de referencia) vive en `references/trends-watch.md`.
 **Color y paletas modernas → `references/color.md`**
 **Spacing, grid y layout → `references/layout.md`**
 **Micro-interacciones y animación → `references/motion.md`**
+**Cuándo no animar → `references/motion-craft.md`**
+**Lectura del brief (landing y marketing) → `references/design-read.md`**
+**Historia visual y mobile compuesto → `references/scroll-story.md`**
 **Referencias e inspiración → `references/inspiration.md`**
 **Recursos gratuitos (literal + inspiración) → `references/learning-sources.md`**
 **Tendencias y modas (con caducidad) → `references/trends-watch.md`**

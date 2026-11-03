@@ -24,7 +24,7 @@ Menos improvisación del agente, más entregables repetibles: el mismo criterio 
 | El agente “inventa” stack o salta convenciones | Skills de disciplina + escenarios RED/GREEN |
 | Cada proyecto arranca distinto | Plantillas `AGENTS.md`, `project-memory`, code-map, bootstrap |
 | Errores de CI sin formato útil | Feedback FB-3 (`comprobacion-produccion`) |
-| Deuda de prompts dispersa | 38 skills con protocolo, references y LEARNINGS |
+| Deuda de prompts dispersa | 39 skills con protocolo, references y LEARNINGS |
 | Onboarding lento | `team-onboarding`, harness por topología (`harness-template`) |
 
 ## Dónde vive la suite (3 capas)
@@ -60,7 +60,7 @@ cd SuiteDevStudio
 ./install-local.sh
 ```
 
-Copia las 38 skills a `~/.cursor/skills/`. No borra skills personales ajenas a la suite.
+Copia las 39 skills a `~/.cursor/skills/`. No borra skills personales ajenas a la suite.
 
 **Aprendizaje (L3):** al usar skills en cualquier chat, registrar gaps en `LEARNINGS.md` de la skill. Periodicamente en el repo canónico:
 
@@ -120,7 +120,7 @@ Detalle completo en [`MANIFIESTO.md`](MANIFIESTO.md).
 |------|--------|---------|
 | **Negocio** | 4 | Propuestas, pricing, análisis, sprints |
 | **Arquitectura** | 10 | Web, DB, API, Laravel, Node, Next, React, Flutter, RN, DevOps |
-| **Calidad** | 12 | Tests, prod gates, Karpathy, tokens, seguridad, git, observabilidad, onboarding |
+| **Calidad** | 13 | Tests, prod gates, Karpathy, tokens, seguridad, cumplimiento público, git, observabilidad, onboarding |
 | **Diseño / UX** | 8 | Discovery, IA, UI web/mobile, design system, atomic, admin |
 | **Meta** | 4 | `skill-evolution`, `harness-template`, `testing-skills-with-subagents`, `HARNESS-FAILURES` |
 | **Opt-in** | 1 | `graphify-integration` |
@@ -172,7 +172,7 @@ SuiteDevStudio/
 ├── scripts/
 │   ├── harness-test.sh       ← Gate unificado (local + CI)
 │   └── tag-harness-release.sh
-├── skills/                   ← 38 skills (SKILL.md + references/)
+├── skills/                   ← 39 skills (SKILL.md + references/)
 ├── templates/                ← Plantillas para proyectos cliente
 ├── docs/
 │   ├── suite-code-map.md     ← Mapa FF-2 de este repo

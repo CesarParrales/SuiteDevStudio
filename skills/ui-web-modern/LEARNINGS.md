@@ -13,4 +13,7 @@ Registro de lecciones de uso. `skill-evolution` consolida las pendientes en el S
 
 ## Consolidadas
 
-(ninguna aún)
+### 2026-10-17 · Storyboard y mobile compuesto
+- **Tipo:** mejora
+- **Hallazgo:** landings de marca pedían historia en scroll y mobile intencional sin un protocolo en la skill
+- **Acción:** → aplicado 2026-10-17 en `references/scroll-story.md` (enlace desde SKILL.md y `design-read.md`)

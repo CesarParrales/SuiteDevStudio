@@ -110,6 +110,7 @@ Antes de producir cualquier análisis, confirmar estos datos. Si faltan, pregunt
 - [ ] ¿Cuántos usuarios esperados? (día 1 vs. escala proyectada)
 - [ ] ¿Requiere offline, tiempo real, geolocalización, pagos, IA?
 - [ ] ¿Hay requisitos de seguridad / compliance (GDPR, PCI, HIPAA)?
+- [ ] Si habrá sitio o app pública: inventario de `cumplimiento-publico` (políticas, datos, claims) desde este análisis, no al final
 
 ### Bloque Proyecto
 - [ ] ¿Cuál es el presupuesto disponible? (rango)
@@ -263,6 +264,7 @@ en `references/templates.md`):
 | `project-pricing` | La estimación PERT es la base del precio |
 | `sprint-planning` | El roadmap y las user stories se ejecutan en sprints |
 | `web-architecture` | Profundiza las decisiones de arquitectura de F3 |
+| `cumplimiento-publico` | Páginas legales, datos y claims del producto, desde el análisis |
 
 ---
 

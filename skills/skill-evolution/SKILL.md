@@ -8,7 +8,8 @@ description: >
   "consolida aprendizajes", "actualiza las skills", "revisa la suite",
   "qué lecciones hay pendientes", "audita las skills", "datos caducados",
   "registrar fallo del harness", "steering loop", "madurez harness",
-  "readiness assessment", "cierre trimestral harness", "tag harness", o periódicamente
+  "readiness assessment", "cierre trimestral harness", "tag harness",
+  "vigilar skills externas", "upstream", o periódicamente
   (recomendado: cada 2-4 semanas o tras un proyecto grande).
 ---
 
@@ -174,7 +175,7 @@ skills/testing-skills-with-subagents/scripts/validate-release-red.sh
 Cada **8–12 semanas** o antes de etiquetar `harness-v*`:
 
 1. Leer [references/quarterly-harness.md](references/quarterly-harness.md).
-2. Ejecutar Modos **2 + 3 + 5** (auditoría, frescura, readiness).
+2. Ejecutar Modos **2 + 3 + 5 + 8** (auditoría, frescura, readiness, skills externas).
 3. Modo **1** si hay LEARNINGS pendientes en skills de disciplina.
 4. Modo **4** — cerrar entradas aplicadas en `HARNESS-FAILURES.md`.
 5. Verificar último RED+GREEN en `docs/harness-release-log.md`.
@@ -184,6 +185,19 @@ Cada **8–12 semanas** o antes de etiquetar `harness-v*`:
 ```bash
 bash scripts/tag-harness-release.sh v3.4   # valida gates; muestra git tag
 ```
+
+### Modo 8 — Vigilancia de skills externas
+
+Cuando pidan vigilar skills de terceros, o al cierre trimestral, o si una fila de
+[references/upstream-watch.md](references/upstream-watch.md) superó su `revisar_cada`:
+
+1. Leer el registro. Empezar por las filas vencidas.
+2. Abrir la URL de cada fila vencida. Comparar el README o el changelog con la columna Adoptado.
+3. Proponer solo reglas nuevas que la suite no tenga y que no contradigan un gate. Tabla: `Fuente | Regla nueva | Archivo destino`. Esperar aprobación antes de editar.
+4. Tras la pasada, actualizar `last_reviewed` de las filas revisadas, haya o no cambio.
+5. Si el cambio toca un SKILL.md, cerrar con el Modo 2.
+
+No instalar el paquete externo. No copiar un SKILL.md ajeno entero. El crédito queda en la reference de la suite.
 
 ### Gate — skills de disciplina
 
@@ -236,6 +250,10 @@ Si el usuario declina explícitamente el gate, registrar en LEARNINGS de la skil
 ## Readiness (Modo 5)
 - Score /20: ...
 - Top gaps: ...
+
+## Skills externas (Modo 8)
+| Fuente | Estado | Propuesta |
+|--------|--------|-----------|
 ```
 
 ## Estándar de portabilidad de la suite

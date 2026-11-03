@@ -3,7 +3,7 @@
 > Entrada del repo: [README.md](README.md) · Visión: [docs/OVERVIEW.md](docs/OVERVIEW.md)
 
 Generado: 2026-05-31 · Optimizado: 2026-06-11 (v2) · Memoria: 2026-06-11 (v2.1) · Recursos UX: 2026-06-12 · Harness: 2026-06-24 (v3.4)
-Total: 38 skills (33 de dominio + 4 meta/proceso + 1 integración opt-in)
+Total: 39 skills (34 de dominio + 4 meta/proceso + 1 integración opt-in)
 
 ## Capa 1 — Negocio / Cliente
   propuestas-contratos     → Propuestas, contratos, scope, scope creep, CRs
@@ -30,6 +30,7 @@ Total: 38 skills (33 de dominio + 4 meta/proceso + 1 integración opt-in)
   karpathy-guidelines      → Cambios quirúrgicos, checkpoints, escalación
   vibe-coding-token-optimization → Output conciso, reglas observables
   security-checklist       → OWASP, auth segura, secrets, CORS, CSP, auditoría
+  cumplimiento-publico     → Políticas, cookies, datos, claims e imágenes antes de publicar
   supply-chain-security    → Seguridad del toolchain npm/Composer + incidentes activos
   performance-web          → Core Web Vitals, caché, bundle, lazy loading
   git-workflow             → Branching, commits convencionales, PR, code review

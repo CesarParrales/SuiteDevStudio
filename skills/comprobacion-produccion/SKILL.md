@@ -56,6 +56,7 @@ Según el tipo de cambio, ejecutar o proponer en este orden lógico (omite lo no
 - Validación de entradas, autenticación/autorización en rutas afectadas, CORS/CSRF según aplique.
 - Migrations/DDL: plan de migración, tiempo estimado, locks; backups antes de migraciones riesgosas.
 - Cumplimiento: datos personales, retención, logs sin PII en claro si corresponde.
+- Sitio o app pública: tabla de `cumplimiento-publico` sin filas `Falta` o `Duda` en lo que aplica. Si no existe `docs/cumplimiento-publico.md`, el gate de release queda en falta.
 
 ### 1.3 Rendimiento y resiliencia
 
@@ -116,6 +117,7 @@ Si el mismo hallazgo persiste tras **2 intentos** de corrección, detener reinte
 ## 4. Integración con otras skills
 
 - Revisión UI/UX o accesibilidad: combinar con la skill de lineamientos web o del diseño del proyecto.
+- Páginas legales, cookies, reembolsos, claims e imágenes: `cumplimiento-publico`.
 - Reglas de seguridad profundas: combinar con reviews de AppSec o threat model si el cambio toca fronteras de confianza.
 - `DESIGN.md` / sistema de diseño: si el cambio es de interfaz, cruzar con el documento de diseño del repositorio.
 - Fallos repetidos del agente: registrar en `HARNESS-FAILURES.md` (raíz de la suite); `skill-evolution` consolida remedios en skills.

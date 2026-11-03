@@ -8,8 +8,9 @@ description: >
   Passport, queues, jobs, events, listeners, observers, policies, gates, service
   providers, facades, helpers, o cuando diga "cómo hago X en Laravel", "cómo
   estructuro un proyecto Laravel", "Laravel está lento", "cómo testeo en Laravel",
-  "cómo hago un admin en Laravel", o cualquier variante. También aplica en proyectos
-  PHP sin framework definido donde Laravel sea la elección a evaluar.
+  "cómo hago un admin en Laravel", "código generado por IA", "vibe coding",
+  o cualquier variante. También aplica en proyectos PHP sin framework definido
+  donde Laravel sea la elección a evaluar.
 ---
 
 # Laravel Backend Skill
@@ -22,6 +23,7 @@ Guía de producción para sistemas Laravel: patrones, performance y arquitectura
 **Testing con Pest → `references/testing.md`**
 **Performance y Producción → `references/performance.md`**
 **Versiones del stack → `references/stack-versions.md`**
+**Fallos de código generado que no explotan al merge → `references/vibe-fallos.md`**
 
 ---
 
@@ -61,8 +63,10 @@ Guía de producción para sistemas Laravel: patrones, performance y arquitectura
    `references/testing.md`). Gate: `php artisan test --filter=<FeatureTest>` pasa.
 7. **Checklist de deploy** — repasar el Checklist Laravel Producción de este
    archivo; si toca performance u Octane, leer `references/performance.md`.
-8. **Validación y cierre** — ejecutar `## Validación`; actualizar project-memory si
-   hubo decisión de arquitectura; registrar gaps en `LEARNINGS.md`.
+8. **Validación y cierre** — ejecutar `## Validación`. Si el diff lo escribió un
+   agente, recorrer `references/vibe-fallos.md` antes de dar el merge por bueno.
+   Actualizar project-memory si hubo decisión de arquitectura; registrar gaps en
+   `LEARNINGS.md`.
 
 ## Cuándo leer qué reference
 
@@ -73,6 +77,7 @@ Guía de producción para sistemas Laravel: patrones, performance y arquitectura
 | Lentitud general, Octane, caché, deploy | `references/performance.md` |
 | Escribir o arreglar tests | `references/testing.md` |
 | Panel de administración, CRUD interno, dashboard | `references/filament.md` |
+| Código de agente: N+1 escondido, validación duplicada, escritura sin transacción | `references/vibe-fallos.md` |
 
 ---
 
@@ -380,6 +385,7 @@ $ordersByDay = $orders->groupByDate('created_at');
 
 ### Código
 - [ ] `Model::preventLazyLoading()` activo en staging para detectar N+1
+- [ ] Diff de agente revisado con `references/vibe-fallos.md` (accessor, FormRequest, transacción, migración)
 - [ ] Todos los jobs implementan `ShouldQueue` donde corresponde
 - [ ] Retry logic en jobs que pueden fallar por servicios externos
 - [ ] Logs con niveles correctos (no todo en `info`)

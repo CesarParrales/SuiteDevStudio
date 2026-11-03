@@ -7,8 +7,8 @@ description: >
   inconsistencias visuales, problemas de accesibilidad, heurísticas de usabilidad,
   evaluar una interfaz, mejorar una interfaz existente, o cuando diga "qué está
   mal en mi diseño", "cómo mejoro la UI", "hay problemas de accesibilidad",
-  "el diseño no es consistente", "necesito evaluar la experiencia", o cualquier
-  variante donde el punto de partida es un producto o diseño existente.
+  "el diseño no es consistente", "se ve generado", "necesito evaluar la experiencia",
+  o cualquier variante donde el punto de partida es un producto o diseño existente.
 ---
 
 # UI Audit Skill
@@ -23,6 +23,7 @@ Con criterios → "el contraste de texto sobre fondo es 2.1:1, WCAG requiere 4.5
 **Principios UX gratuitos → `references/ux-principles-free.md`**
 **Accesibilidad WCAG → `references/accessibility.md`**
 **Consistencia visual → `references/visual-consistency.md`**
+**Interfaz genérica de modelo → `references/ai-slop.md`**
 **Reporte de auditoría → `references/audit-report.md`**
 **Catálogo recursos free → `../ui-web-modern/references/learning-sources.md`**
 
@@ -238,6 +239,7 @@ evidencia | recomendación | esfuerzo
 - `ux-discovery` — la auditoría es research del producto existente
 - `design-system` — los hallazgos de auditoría alimentan el design system
 - `ui-web-modern`, `ui-admin-dashboard`, `ui-mobile-native` — definen qué debería ser
+- `cumplimiento-publico` — políticas, claims e imágenes; el contraste y el teclado siguen aquí
 
 ---
 

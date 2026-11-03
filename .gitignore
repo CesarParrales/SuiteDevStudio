@@ -4,3 +4,4 @@
 __pycache__/
 *.py[cod]
 .cursor/rules/
+.chats-recuperados/
