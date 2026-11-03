@@ -13,6 +13,11 @@ Registro de lecciones de uso. `skill-evolution` consolida las pendientes en el S
 
 ## Consolidadas
 
+### 2026-11-03 · Guía Elkis Dev arquitectura
+- **Tipo:** mejora
+- **Hallazgo:** PDF práctico aportaba config-placement y resiliencia de llamadas; el stack fijo no
+- **Acción:** → aplicado en web-architecture refs + plano F3; fila en `references/upstream-watch.md`
+
 ### 2026-10-17 · Historia visual desde 10K websites
 - **Tipo:** mejora
 - **Hallazgo:** el repo de prompts cinemáticos aportaba storyboard y mobile compuesto que no estaban en la suite; el pipeline Higgsfield no aportaba

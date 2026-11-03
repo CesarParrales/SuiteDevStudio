@@ -13,4 +13,7 @@ Registro de lecciones de uso. `skill-evolution` consolida las pendientes en el S
 
 ## Consolidadas
 
-(ninguna aún)
+### 2026-11-03 · Plano antes de código (Elkis Dev)
+- **Tipo:** mejora
+- **Hallazgo:** F3 saltaba a stack/C4 sin un cuestionario corto de piezas, R/W, externas y config
+- **Acción:** → aplicado en `references/phases.md` §3.0 + gates del SKILL

@@ -2,7 +2,7 @@
 
 Registro de fuentes de terceros que ya alimentan la suite. No se instalan como skills hermanas. Se destila lo que falta y se deja el crédito.
 
-`last_updated: 2026-10-21`
+`last_updated: 2026-11-03`
 `revisar_cada: 60 días` para las de oficio visual. El resto, 90 días, salvo que la fila diga otra cosa.
 
 ## Cómo revisar una fila
@@ -26,5 +26,6 @@ Registro de fuentes de terceros que ya alimentan la suite. No se instalan como s
 | [Ponytail](https://github.com/DietrichGebert/ponytail) (MIT) | 2026-06-24 | 90 días | `vibe-coding-token-optimization/references/decision-ladder.md` | `alwaysApply` fijo |
 | prompt-master, citado como v1.6.0 en `prompt-engineer/references/04-credit-killing-patterns.md` | 2026-06-01 | 90 días | Patrones de crédito en esa reference | Copiar el paquete |
 | [El Rincón de Isma](https://www.elrincondeisma.com/blog/tres-errores-ia-laravel) | 2026-10-21 | 90 días | `laravel-backend/references/vibe-fallos.md` | Equipo de 10 agentes, homelab, kit de VPS |
+| [Elkis Dev — Arquitectura de software](https://github.com/elkisdm/devground/tree/main/knowledge) (guía PDF práctica) | 2026-11-03 | 90 días | `web-architecture/references/config-placement.md`, `external-calls.md`; plano 3.0 en `software-project-analysis/references/phases.md` | Stack fijo Next/Supabase/Resend/Railway; metáfora sola; knowledge base entera |
 
 Ponytail y prompt-master superan su cadencia en esta primera carga del registro. La próxima pasada del Modo 8 empieza por esas dos filas.

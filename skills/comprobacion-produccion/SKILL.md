@@ -62,11 +62,15 @@ Según el tipo de cambio, ejecutar o proponer en este orden lógico (omite lo no
 
 - Consultas N+1, índices, caché; límites de rate donde proceda.
 - Timeouts, reintentos con idempotencia, colas y dead-letter si hay trabajos asíncronos.
+- Regla corta: llamada externa en request con límite 1–5 s; si puede superar ~1 s → cola;
+  backoff creciente y ≤3 reintentos con usuario esperando (`web-architecture/references/external-calls.md`).
 - Tamaño de assets y carga bajo conexiones reales o staging representativo.
 
 ### 1.4 Configuración y despliegue
 
 - **Paridad** staging ↔ producción en lo esencial (variables, flags, recursos), salvo acuerdo explícito.
+- **Dónde vive cada valor:** código / env / flag / BD según daño si cambia mal
+  (`web-architecture/references/config-placement.md`). Secretos solo en env/gestor.
 - **Feature flags:** estado inicial en prod, desactivación y plan de retirada.
 - **Migrations/orden** de despliegue: ¿app antes o después de esquema? plan documentado.
 - **Rollback:** qué commit/tag revertir, cómo deshacer migración o flag, RTO/RPO si aplica.

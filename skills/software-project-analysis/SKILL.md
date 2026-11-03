@@ -49,7 +49,10 @@ discovery → arquitectura → estimación → roadmap → entregables.
 3. **Ejecutar las fases F1-F3** (discovery → requerimientos → arquitectura)
    siguiendo el detalle de `references/phases.md`. En F1 leer
    `references/client-behavior.md` para detectar señales del cliente; en F3
-   usar los stacks de `references/templates.md` con matriz de decisión.
+   completar el **plano 3.0 antes de código**, luego stacks de
+   `references/templates.md` con matriz de decisión. Config y llamadas
+   externas: `../web-architecture/references/config-placement.md` y
+   `../web-architecture/references/external-calls.md`.
 4. **Ejecutar F4-F5** (estimación PERT por módulo + roadmap por fases con
    gates de entrada/salida), según `references/phases.md`.
 5. **Ejecutar F6** (riesgos) con el catálogo de `references/risk-patterns.md`:
@@ -137,7 +140,7 @@ para lo bloqueante, pero nunca entregar las preguntas como único output.
 |------|----------|--------------|
 | F1 Discovery | Entender el problema real, no el síntoma | JTBD, perfil de usuario, análisis competitivo, señales del cliente |
 | F2 Requerimientos | Traducir negocio a specs verificables | Funcionales por módulo (P0-P3), no funcionales, integraciones, user stories |
-| F3 Arquitectura | Definir el sistema antes de codear | Stack con matriz de decisión, diagramas C4 (Mermaid/ASCII), ADRs, modelo de datos, seguridad, APIs |
+| F3 Arquitectura | Definir el sistema antes de codear | Plano 3.0 (piezas, módulos, R/W, externas, config) + stack, C4, ADRs, datos, seguridad, APIs |
 | F4 Estimación | Rangos honestos, no números mágicos | PERT por módulo + factores de ajuste + costo de no calidad |
 | F5 Roadmap | Maximizar valor, minimizar riesgo | MVP real (≤12 semanas), fases 0-N con gates de entrada/salida |
 | F6 Riesgos | Anticipar lo que puede salir mal | Matriz P×I, 6 categorías obligatorias, plan de contingencia |
@@ -176,6 +179,7 @@ ni el tipo de producto).
 | Gate | Acción | Criterio |
 |------|--------|----------|
 | Placeholders | `grep -nE 'TODO|\[completar\]|\[pendiente\]' <archivo>` | vacío |
+| Plano F3 | sección 3.0 en `references/phases.md` | piezas, módulos, externas, config respondidos |
 | Estimación | tabla PERT | rangos, no puntos únicos |
 | MVP | roadmap | ≤12 semanas o justificado |
 | Riesgos | matriz F6 | prob × impacto + mitigación |
@@ -201,7 +205,9 @@ en `references/templates.md`):
 [Módulos P0-P3 con criterios verificables + no funcionales + integraciones]
 
 ## Arquitectura
+[Plano 3.0: piezas, módulos, R/W, externas, dónde vive cada config]
 [Stack justificado + diagrama C4 (Mermaid) + ADRs clave + modelo de datos]
+[Checklist antes del primer cliente]
 
 ## Estimación (PERT)
 | Módulo | O | M | P | PERT | Rango |

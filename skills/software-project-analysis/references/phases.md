@@ -102,6 +102,37 @@ Definición de Hecho:
 
 **Objetivo:** definir el sistema completo antes de escribir una línea de código.
 
+### 3.0 Plano antes de código
+
+Antes del stack y del código, responder en el documento de análisis (sin implementar).
+Si la IA propone microservicios, CQRS o hexagonal, exigir el **problema concreto con números**
+en este proyecto; si no, monolito modular. Detalle de config/resiliencia:
+`../web-architecture/references/config-placement.md` y
+`../web-architecture/references/external-calls.md`.
+
+1. Piezas (interfaz, servidor, BD, servicios externos) y por qué cada una.
+2. Módulos y cuáles dependen mucho entre sí.
+3. Por función importante: ¿más lectura o escritura? ¿consultas que más se repiten?
+4. Tipo de BD según esas consultas (no al revés).
+5. Orden de módulos en monolito modular y sus capas.
+6. Servicios externos: timeout, reintentos, qué pasa si uno se cae.
+7. Tareas >~1 s → cola.
+8. Dónde vive cada valor: código, env, feature flags o BD — y por qué.
+9. Dónde alojar cada pieza al empezar (serverless vs servidor) y por qué.
+10. Riesgos y qué queda para una segunda etapa.
+11. Escribir decisiones no obvias como ADR en `docs/adr/`.
+
+**Checklist antes del primer cliente (cierre de F3 / gate con `comprobacion-produccion`):**
+
+- [ ] Piezas y módulos escritos en un documento
+- [ ] Permisos validados en el servidor
+- [ ] Ningún secreto en código ni repo
+- [ ] Cada llamada externa con tiempo límite
+- [ ] Tareas lentas en cola con reintentos
+- [ ] Errores registrados donde se revisan
+- [ ] Respaldos y entorno de prueba aparte
+- [ ] Decisiones importantes en ADR / project-memory
+
 ### 3.1 Selección de Stack
 
 Evaluar cada opción con matriz:

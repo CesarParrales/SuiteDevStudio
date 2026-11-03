@@ -22,6 +22,8 @@ reales, y cómo evolucionar la arquitectura conforme crece el proyecto.
 **Arquitectura por tipo de proyecto → `references/by-project-type.md`**
 **Anti-patrones comunes → `references/anti-patterns.md`**
 **Plantilla ADR → `references/adr-template.md`**
+**Dónde vive cada config → `references/config-placement.md`**
+**Llamadas externas, colas y deploy → `references/external-calls.md`**
 
 ---
 
@@ -60,14 +62,18 @@ sino "¿qué arquitectura necesita este proyecto en este momento?"
    Para detalles de implementación del patrón elegido, leer `references/patterns.md`.
 4. **Contrastar contra anti-patrones** — leer `references/anti-patterns.md` y verificar
    que la propuesta no reproduce ninguno (God Object, microservicios prematuros, etc.).
-5. **Documentar la decisión como ADR** — usar `references/adr-template.md`.
+5. **Config y resiliencia** — leer `references/config-placement.md` y
+   `references/external-calls.md`. Para cada integración externa: timeout, reintentos
+   y si va en el request o en cola. Para cada valor configurable: dónde vive.
+   Serverless vs servidor es decisión de **deploy**, no de patrón.
+6. **Documentar la decisión como ADR** — usar `references/adr-template.md`.
    Gate: `ls docs/adr/*.md` muestra el ADR nuevo y `wc -l docs/adr/<archivo>.md`
    confirma que tiene contenido (> 20 líneas).
-6. **Validar la regla de dependencias** (si ya hay código) — gate: ejecutar
+7. **Validar la regla de dependencias** (si ya hay código) — gate: ejecutar
    `grep -rn "Illuminate\|Eloquent\|Infrastructure" app/Domain/ src/domain/ 2>/dev/null`
    y verificar que devuelve vacío (el dominio no importa infraestructura).
-7. **Entregar la recomendación** con el formato de `## Entregable`.
-8. **Validación y cierre** — ejecutar `## Validación`; ADR en repo; project-memory actualizado.
+8. **Entregar la recomendación** con el formato de `## Entregable`.
+9. **Validación y cierre** — ejecutar `## Validación`; ADR en repo; project-memory actualizado.
 
 ### Cuestionario de contexto
 
@@ -95,6 +101,8 @@ Si el usuario no aporta datos, asumir y **declarar** estos supuestos en la respu
 | Dominio | CRUD con algo de lógica → Service Layer basta, sin DDD |
 | Camino de evolución | Monolito modular antes que extracción de servicios |
 | Comunicación async | Events + queue del framework, no message broker dedicado |
+| Llamadas externas | Timeout 1–5 s en request; cola si >~1 s; backoff ≤3 reintentos |
+| Valores configurables | Secretos en env; reglas en código; copy/límites operativos en BD |
 
 ---
 
@@ -414,6 +422,8 @@ Año 1+ — Madurez:
 6. **Eventos para desacoplar** — no llamadas directas entre módulos no relacionados
 7. **Un aggregate, una transacción** — no modificar múltiples aggregates en una sola transacción
 8. **Documentar las decisiones** — ADR por cada decisión arquitectónica no obvia (ver `references/adr-template.md`)
+9. **Config por daño** — quién cambia qué (`references/config-placement.md`)
+10. **Fallos lentos** — timeout + backoff + cola (`references/external-calls.md`)
 
 ---
 
@@ -432,6 +442,8 @@ Año 1+ — Madurez:
 | ADR | `ls docs/adr/*.md` + revisión contenido | ADR nuevo >20 líneas, status claro |
 | Dependencias dominio | `grep -rn "Illuminate\|Infrastructure" app/Domain/ src/domain/` | vacío (si hay capa dominio) |
 | Anti-patrones | contrastar con `references/anti-patterns.md` | ninguno aplicable sin mitigación |
+| Config | lista en entregable o ADR | cada valor con «dónde vive» (`config-placement.md`) |
+| Externas | integraciones del alcance | timeout + reintento/cola declarados (`external-calls.md`) |
 | Entregable | formato `## Entregable` | trade-offs + siguiente paso verificable |
 
 ---
@@ -453,9 +465,11 @@ Toda recomendación de arquitectura debe cerrar con este formato:
 2. [Riesgo] → mitigación: ...
 3. [Riesgo] → mitigación: ...
 
+## Configurables / externas
+[Tabla valor→dónde vive · tabla servicio→timeout/reintento/cola — ver references]
+
 ## Siguiente paso verificable
-[Acción concreta + cómo verificar que se cumplió, p. ej. "crear ADR-0001 y
-estructura de carpetas del módulo orders; verificar con `ls docs/adr/ app/Modules/Orders/`"]
+[Acción concreta + cómo verificar, p. ej. `ls docs/adr/ app/Modules/Orders/`]
 ```
 
 ---

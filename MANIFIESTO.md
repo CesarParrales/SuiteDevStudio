@@ -145,3 +145,5 @@ Cada skill cumple:
   Reportes: docs/evolution-report-2026-06-12.md · docs/evolution-report-2026-07-19.md
              · docs/evolution-report-2026-08-08.md
   Spec de trabajo (Kiro, 2026-10): docs/evaluation-kiro.md — solo feature grande y bug crítico
+  Elkis arquitectura (2026-11): docs/evaluation-elkis-architecture-2026-11.md —
+    config-placement + external-calls + plano F3; sin stack Next/Supabase fijo
