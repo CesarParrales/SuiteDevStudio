@@ -6,6 +6,18 @@ Append-only. Una entrada mínima por oleada o versión harness.
 
 ---
 
+### 2026-11-03 · v3.4+ renovación gate release-red (≤90 días)
+
+- **Escenario:** CP-RED-01 (Deploy en 20 minutos)
+- **Skill:** comprobacion-produccion
+- **RED:** B — *"Los tests de ayer no validan el código que vas a desplegar ahora; Pest en los archivos modificados da señal rápida sobre el cambio real"*
+- **GREEN:** B — *"La skill exige evidencia del diff actual antes de merge/deploy; «pasaron ayer» no cubre el cambio de hoy"*
+- **Ejecutor:** subagentes frescos RED+GREEN (composer-2.5-fast), readonly
+- **Hallazgo:** RED también eligió B (el modelo base ya desconfía de «tests de ayer»); el contraste útil quedó en la justificación GREEN anclada a la skill. Gate CI `release-red` renovado tras 116 días sin entrada.
+- **Artefactos:** destilado Elkis (config-placement, external-calls, plano F3); commits `6223129` / `fbfe820`
+
+---
+
 ### 2026-07-10 · v3.4 oleada 22 — robustez loop L3 + frescura
 
 - **Escenario:** SE-RED-01 (LEARNINGS solo en repo canónico)
