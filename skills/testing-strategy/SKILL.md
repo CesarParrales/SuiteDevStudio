@@ -21,6 +21,7 @@ Estrategia completa de testing para proyectos web y mobile.
 **Tests de integración y E2E → `references/integration-e2e.md`**
 **Mocking y fixtures → `references/mocking.md`**
 **Behaviour harness (AC, fixtures aprobados) → `references/behaviour-harness.md`**
+**Auditoría de tests de bajo valor → `references/test-audit.md`**
 
 ---
 
@@ -61,6 +62,7 @@ Estrategia completa de testing para proyectos web y mobile.
 | Dependencia externa (API, BD, tiempo) que aislar | Unit + mock | `references/mocking.md` |
 | Feature nueva con criterios de negocio | Behaviour (AC → RED → GREEN) | `references/behaviour-harness.md` |
 | Invariante de muchos inputs (opt-in) | Propiedad, si el proyecto ya tiene librería | `references/behaviour-harness.md` § Propiedades |
+| Suite existente con tests sospechosos de bajo valor (duplicados, sin aserciones, greps de fuente) | Auditoría con evidencia, solo-lectura hasta lote aprobado | `references/test-audit.md` |
 
 ---
 
