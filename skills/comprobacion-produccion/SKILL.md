@@ -49,6 +49,7 @@ Según el tipo de cambio, ejecutar o proponer en este orden lógico (omite lo no
 - Cobertura mínima aceptable por el equipo; corregir tests rotos o flaky **antes** del merge a rama de release.
 - Linter, tipado estricto si el proyecto lo usa; sin “warnings silenciados” nuevos de forma oportunista.
 - Revisar diff: efectos colaterales, dependencias nuevas, código muerto o flags sin uso.
+- **Integridad de gates:** todo test desactivado, umbral relajado, snapshot regenerado, pragma de supresión o bypass de CI en el diff llega a una decisión humana con motivo escrito — catálogo y barrido en [references/gate-integrity.md](references/gate-integrity.md). El informe lleva línea `Gates editados:` (o `ninguno`).
 
 ### 1.2 Seguridad y datos
 

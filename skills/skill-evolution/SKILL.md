@@ -71,6 +71,8 @@ python3 scripts/learnings_merge.py pending --skills skills
    contenido actual, márcala como `requiere decisión` con las dos opciones.
 
 4. **Aplicar** los cambios aprobados. Reglas:
+   - Seguir la escalera de edición: parar en el primer peldaño que resuelve el cambio
+     ([references/edit-ladder.md](references/edit-ladder.md)) — editar la línea existente antes que anexar
    - Mantener SKILL.md < 500 líneas (mover detalle a references si crece)
    - No duplicar: si el dato existe en una reference, corregir ahí y no copiarlo al SKILL.md
    - Conservar el estándar de portabilidad (ver abajo)
